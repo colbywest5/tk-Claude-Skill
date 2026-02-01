@@ -28,34 +28,30 @@ The best AI coding workflows—[Get Shit Done](https://github.com/glittercowboy/
 
 ## Installation
 
-### Method 1: Claude Code Plugin (Recommended)
+Works on **Windows**, **macOS**, and **Linux**.
 
-```bash
-# In Claude Code, run:
-/plugin install https://github.com/colbywest5/tk-Claude-Skill
-```
-
-Or add to your project's `.claude/settings.json`:
-```json
-{
-  "plugins": [
-    "https://github.com/colbywest5/tk-Claude-Skill"
-  ]
-}
-```
-
-### Method 2: NPX Installer
+### Method 1: NPX (Recommended)
 
 ```bash
 npx tk-claude-skill
 ```
 
-This installs to `~/.claude/commands/` (global) or `.claude/commands/` (local).
+### Method 2: One-Line Script
 
-### Method 3: One-Line Script
-
+**macOS / Linux / Git Bash:**
 ```bash
 curl -fsSL https://raw.githubusercontent.com/colbywest5/tk-Claude-Skill/main/install.sh | bash
+```
+
+**Windows PowerShell:**
+```powershell
+irm https://raw.githubusercontent.com/colbywest5/tk-Claude-Skill/main/install.ps1 | iex
+```
+
+### Method 3: Claude Code Plugin
+
+```bash
+/plugin install https://github.com/colbywest5/tk-Claude-Skill
 ```
 
 ### Method 4: Manual
@@ -63,26 +59,34 @@ curl -fsSL https://raw.githubusercontent.com/colbywest5/tk-Claude-Skill/main/ins
 ```bash
 git clone https://github.com/colbywest5/tk-Claude-Skill.git
 cd tk-Claude-Skill
+```
 
-# Global install (all projects)
+**macOS / Linux:**
+```bash
 cp tk.md ~/.claude/commands/
 mkdir -p ~/.claude/commands/tk
 cp commands/* ~/.claude/commands/tk/
+```
 
-# Or local install (current project only)
-mkdir -p .claude/commands/tk
-cp tk.md .claude/commands/
-cp commands/* .claude/commands/tk/
+**Windows (PowerShell):**
+```powershell
+Copy-Item tk.md $env:USERPROFILE\.claude\commands\
+New-Item -ItemType Directory -Path $env:USERPROFILE\.claude\commands\tk -Force
+Copy-Item commands\* $env:USERPROFILE\.claude\commands\tk\
 ```
 
 ### Verify Installation
 
 Restart Claude Code, then run:
-```bash
+```
 /tk:help
 ```
 
-You should see all 16 commands listed.
+### Update
+
+```
+/tk:update
+```
 
 ---
 

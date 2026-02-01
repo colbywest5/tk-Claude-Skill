@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # TK - Token Killer Installer
+# Works on: macOS, Linux, Windows (Git Bash, WSL, MSYS2)
 # Usage: curl -fsSL https://raw.githubusercontent.com/colbywest5/tk-Claude-Skill/main/install.sh | bash
 
 set -e
 
-VERSION="1.0.0"
+VERSION="1.1.0"
 REPO="colbywest5/tk-Claude-Skill"
 CYAN='\033[0;36m'
 GREEN='\033[0;32m'
@@ -13,68 +14,95 @@ DIM='\033[2m'
 RESET='\033[0m'
 
 echo ""
-echo -e "${CYAN}╔════════════════════════════════════════╗${RESET}"
-echo -e "${CYAN}║              TK v${VERSION}                  ║${RESET}"
-echo -e "${CYAN}║     Token-optimized Claude Commands    ║${RESET}"
-echo -e "${CYAN}╚════════════════════════════════════════╝${RESET}"
+echo -e "${CYAN}TK v${VERSION}${RESET}"
+echo -e "${DIM}Token-optimized Claude Commands${RESET}"
 echo ""
 
-# Detect OS
-OS="$(uname -s)"
-case "$OS" in
-    Linux*)     CLAUDE_DIR="$HOME/.claude/commands";;
-    Darwin*)    CLAUDE_DIR="$HOME/.claude/commands";;
-    MINGW*|MSYS*|CYGWIN*)    CLAUDE_DIR="$USERPROFILE/.claude/commands";;
-    *)          CLAUDE_DIR="$HOME/.claude/commands";;
-esac
+# Detect OS and set Claude commands directory
+detect_claude_dir() {
+    case "$(uname -s)" in
+        Linux*)
+            echo "$HOME/.claude/commands"
+            ;;
+        Darwin*)
+            echo "$HOME/.claude/commands"
+            ;;
+        CYGWIN*|MINGW*|MSYS*)
+            # Windows via Git Bash, MSYS2, Cygwin
+            if [ -n "$USERPROFILE" ]; then
+                echo "$(cygpath -u "$USERPROFILE")/.claude/commands"
+            else
+                echo "$HOME/.claude/commands"
+            fi
+            ;;
+        *)
+            echo "$HOME/.claude/commands"
+            ;;
+    esac
+}
+
+CLAUDE_DIR=$(detect_claude_dir)
+TK_DIR="$CLAUDE_DIR/tk"
 
 # Parse arguments
-INSTALL_DIR="$CLAUDE_DIR"
 for arg in "$@"; do
     case $arg in
         --local|-l)
-            INSTALL_DIR="./.claude/commands"
+            CLAUDE_DIR="./.claude/commands"
+            TK_DIR="./.claude/commands/tk"
             ;;
         --global|-g)
-            INSTALL_DIR="$CLAUDE_DIR"
+            # Already set to global
             ;;
         --uninstall)
             echo "Uninstalling TK..."
             rm -f "$CLAUDE_DIR/tk.md" 2>/dev/null || true
-            rm -rf "$CLAUDE_DIR/tk" 2>/dev/null || true
-            echo -e "${GREEN}✓${RESET} Uninstalled TK"
+            rm -rf "$TK_DIR" 2>/dev/null || true
+            echo -e "${GREEN}+${RESET} Uninstalled TK"
+            exit 0
+            ;;
+        --help|-h)
+            echo "Usage: install.sh [OPTIONS]"
+            echo ""
+            echo "Options:"
+            echo "  --global, -g     Install globally (default)"
+            echo "  --local, -l      Install to current project"
+            echo "  --uninstall      Remove TK"
+            echo "  --help, -h       Show this help"
             exit 0
             ;;
     esac
 done
 
-# Create temp directory
-TMP_DIR=$(mktemp -d)
-trap "rm -rf $TMP_DIR" EXIT
+# Create temp directory (cross-platform)
+TMP_DIR=$(mktemp -d 2>/dev/null || mktemp -d -t 'tk-install')
+trap "rm -rf '$TMP_DIR'" EXIT
 
-echo -e "${DIM}Downloading TK...${RESET}"
+echo -e "${DIM}Downloading from GitHub...${RESET}"
 
-# Download files
+# Download main file
 curl -fsSL "https://raw.githubusercontent.com/$REPO/main/tk.md" -o "$TMP_DIR/tk.md"
 
+# Download command files
 mkdir -p "$TMP_DIR/commands"
-for cmd in _shared map build design debug qa review clean doc deploy init resume learn status help; do
+COMMANDS="_shared map build design debug qa review clean doc deploy init resume learn opinion rules status tokens help update"
+for cmd in $COMMANDS; do
     curl -fsSL "https://raw.githubusercontent.com/$REPO/main/commands/${cmd}.md" -o "$TMP_DIR/commands/${cmd}.md" 2>/dev/null || true
 done
 
-# Create install directory
-mkdir -p "$INSTALL_DIR"
-mkdir -p "$INSTALL_DIR/tk"
+# Create directories
+mkdir -p "$CLAUDE_DIR"
+mkdir -p "$TK_DIR"
 
-# Copy files
-cp "$TMP_DIR/tk.md" "$INSTALL_DIR/tk.md"
-echo -e "${GREEN}✓${RESET} Installed tk.md"
+# Install files
+cp "$TMP_DIR/tk.md" "$CLAUDE_DIR/tk.md"
+echo -e "${GREEN}+${RESET} Installed tk.md"
 
-cp -r "$TMP_DIR/commands/"* "$INSTALL_DIR/tk/"
-echo -e "${GREEN}✓${RESET} Installed commands/"
+cp "$TMP_DIR/commands/"*.md "$TK_DIR/" 2>/dev/null || cp $TMP_DIR/commands/*.md "$TK_DIR/"
+echo -e "${GREEN}+${RESET} Installed commands/"
 
 echo ""
-echo -e "${DIM}Installed to: $INSTALL_DIR${RESET}"
+echo -e "${DIM}Installed to: $CLAUDE_DIR${RESET}"
 echo ""
-echo -e "${GREEN}Done!${RESET} Run ${CYAN}/tk:help${RESET} in Claude Code to get started."
+echo -e "${GREEN}Done!${RESET} Run /tk:help in Claude Code to get started."
 echo ""
