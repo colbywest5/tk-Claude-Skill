@@ -10,18 +10,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.1.0] - 2025-02-01
 
 ### Added
-- `/tk:rules` - Set global rules for all agents (no emojis, no placeholders, etc.)
+- `/tk:rules` - Set global rules for all agents
+- `/tk:sync` - Multi-agent coordination and status
 - `/tk:update` - Self-update from GitHub
 - `/tk:opinion` - Honest project audit with actionable feedback
+- Multi-agent coordination system (file locking, agent IDs, heartbeats)
 - Agent definitions in `agents/` folder
 - Hook definitions in `hooks/` folder
 - GitHub Actions release workflow
+- Cross-platform support (Windows, macOS, Linux)
+- PowerShell installer for Windows
+- Version tracking in all major commands
 - CONTRIBUTING.md
 - MAINTAINERS.md
 
 ### Changed
-- `_shared.md` now loads and enforces rules from `.tk/RULES.md`
-- Updated workflow.svg with all 18 commands
+- `_shared.md` now includes multi-agent coordination patterns
+- All shared files use locking to prevent overwrites
+- Append-only logging for history files
+- Updated workflow.svg with all commands
 - Improved installation documentation
 
 ---
@@ -36,7 +43,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `/tk:build` 7-phase workflow
 - `/tk:qa` security vulnerability scanning
 - `/tk:design` distinctive UI creation
-- Token usage tracking
 - One-line installer script
 - NPM package support
 - MCP integration
