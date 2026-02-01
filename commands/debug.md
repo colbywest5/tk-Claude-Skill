@@ -14,6 +14,17 @@ $import(commands/tk/_shared.md)
 
 # TK v1.1.0 | /tk:debug [mode]
 
+## STEP 0: LOAD RULES (MANDATORY)
+
+**Before ANYTHING else, load and display rules:**
+
+1. Read .tk/RULES.md (or ~/.claude/tk-rules.md)
+2. Display: "RULES LOADED: [count] rules"
+3. List each rule
+4. Proceed only after rules are confirmed loaded
+
+See _shared.md for full rules loading procedure.
+
 Debug systematically. Break repair loops.
 
 ## Critical Rules
