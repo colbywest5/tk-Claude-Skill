@@ -2,100 +2,91 @@
   <defs>
     <style>
       .bg { fill: #0d1117; }
-      .box { fill: #161b22; stroke: #30363d; stroke-width: 1; rx: 8; }
-      .box-highlight { fill: #1f2937; stroke: #58a6ff; stroke-width: 2; rx: 8; }
-      .text { font-family: 'SF Mono', 'Inter', system-ui, sans-serif; }
+      .box { fill: #161b22; stroke: #30363d; stroke-width: 1; }
+      .box-highlight { fill: #1f2937; stroke: #58a6ff; stroke-width: 2; }
+      .text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
+      .mono { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace; }
       .title { fill: #e6edf3; font-weight: 600; }
       .subtitle { fill: #7d8590; }
-      .cmd { fill: #58a6ff; font-family: 'SF Mono', monospace; }
+      .cmd { fill: #58a6ff; }
       .arrow { fill: none; stroke: #30363d; stroke-width: 2; }
       .arrow-head { fill: #30363d; }
       .mode-light { fill: #3fb950; }
       .mode-medium { fill: #d29922; }
       .mode-heavy { fill: #a371f7; }
+      .success { fill: #3fb950; }
     </style>
   </defs>
 
-  <!-- Background -->
   <rect class="bg" width="900" height="320" rx="12"/>
 
-  <!-- Map -->
-  <rect class="box-highlight" x="20" y="40" width="140" height="100"/>
-  <text class="text cmd" font-size="14" x="90" y="70" text-anchor="middle">/tk:map</text>
+  <rect class="box-highlight" x="20" y="40" width="140" height="100" rx="8"/>
+  <text class="mono cmd" font-size="14" x="90" y="70" text-anchor="middle">/tk:map</text>
   <text class="text subtitle" font-size="11" x="90" y="95" text-anchor="middle">Create context</text>
   <text class="text subtitle" font-size="11" x="90" y="115" text-anchor="middle">AGENTS.md</text>
   <text class="text title" font-size="10" x="90" y="132" text-anchor="middle">RUN FIRST</text>
 
-  <!-- Arrow 1 -->
   <path class="arrow" d="M 165 90 L 195 90"/>
   <polygon class="arrow-head" points="195,85 205,90 195,95"/>
 
-  <!-- Build -->
-  <rect class="box" x="210" y="40" width="140" height="100"/>
-  <text class="text cmd" font-size="14" x="280" y="70" text-anchor="middle">/tk:build</text>
+  <rect class="box" x="210" y="40" width="140" height="100" rx="8"/>
+  <text class="mono cmd" font-size="14" x="280" y="70" text-anchor="middle">/tk:build</text>
   <text class="text subtitle" font-size="11" x="280" y="95" text-anchor="middle">7-phase workflow</text>
-  <text class="text subtitle" font-size="11" x="280" y="115" text-anchor="middle">Explore → Design</text>
-  <text class="text subtitle" font-size="11" x="280" y="132" text-anchor="middle">→ Build → Review</text>
+  <text class="text subtitle" font-size="11" x="280" y="115" text-anchor="middle">Explore, Design</text>
+  <text class="text subtitle" font-size="11" x="280" y="132" text-anchor="middle">Build, Review</text>
 
-  <!-- Arrow 2 -->
   <path class="arrow" d="M 355 90 L 385 90"/>
   <polygon class="arrow-head" points="385,85 395,90 385,95"/>
 
-  <!-- QA -->
-  <rect class="box" x="400" y="40" width="140" height="100"/>
-  <text class="text cmd" font-size="14" x="470" y="70" text-anchor="middle">/tk:qa</text>
+  <rect class="box" x="400" y="40" width="140" height="100" rx="8"/>
+  <text class="mono cmd" font-size="14" x="470" y="70" text-anchor="middle">/tk:qa</text>
   <text class="text subtitle" font-size="11" x="470" y="95" text-anchor="middle">Test + Security</text>
   <text class="text subtitle" font-size="11" x="470" y="115" text-anchor="middle">6 specialists</text>
   <text class="text subtitle" font-size="11" x="470" y="132" text-anchor="middle">Vuln scanning</text>
 
-  <!-- Arrow 3 -->
   <path class="arrow" d="M 545 90 L 575 90"/>
   <polygon class="arrow-head" points="575,85 585,90 575,95"/>
 
-  <!-- Deploy -->
-  <rect class="box" x="590" y="40" width="140" height="100"/>
-  <text class="text cmd" font-size="14" x="660" y="70" text-anchor="middle">/tk:deploy</text>
+  <rect class="box" x="590" y="40" width="140" height="100" rx="8"/>
+  <text class="mono cmd" font-size="14" x="660" y="70" text-anchor="middle">/tk:deploy</text>
   <text class="text subtitle" font-size="11" x="660" y="95" text-anchor="middle">Pre-flight checks</text>
   <text class="text subtitle" font-size="11" x="660" y="115" text-anchor="middle">Deploy + verify</text>
   <text class="text subtitle" font-size="11" x="660" y="132" text-anchor="middle">Auto-rollback</text>
 
-  <!-- Success -->
-  <rect class="box" x="760" y="55" width="120" height="70" style="stroke: #3fb950;"/>
-  <text class="text" font-size="24" x="820" y="85" text-anchor="middle" style="fill: #3fb950;">✓</text>
+  <rect class="box" x="760" y="55" width="120" height="70" rx="8" style="stroke: #3fb950;"/>
+  <text class="text success" font-size="24" x="820" y="85" text-anchor="middle">✓</text>
   <text class="text subtitle" font-size="11" x="820" y="110" text-anchor="middle">Production</text>
 
-  <!-- Support commands row -->
-  <rect class="box" x="20" y="180" width="120" height="70"/>
-  <text class="text cmd" font-size="12" x="80" y="205" text-anchor="middle">/tk:debug</text>
+  <rect class="box" x="20" y="180" width="120" height="70" rx="8"/>
+  <text class="mono cmd" font-size="12" x="80" y="205" text-anchor="middle">/tk:debug</text>
   <text class="text subtitle" font-size="10" x="80" y="225" text-anchor="middle">Fix problems</text>
   <text class="text subtitle" font-size="10" x="80" y="240" text-anchor="middle">4 investigators</text>
 
-  <rect class="box" x="160" y="180" width="120" height="70"/>
-  <text class="text cmd" font-size="12" x="220" y="205" text-anchor="middle">/tk:review</text>
+  <rect class="box" x="160" y="180" width="120" height="70" rx="8"/>
+  <text class="mono cmd" font-size="12" x="220" y="205" text-anchor="middle">/tk:review</text>
   <text class="text subtitle" font-size="10" x="220" y="225" text-anchor="middle">Code review</text>
   <text class="text subtitle" font-size="10" x="220" y="240" text-anchor="middle">4 reviewers</text>
 
-  <rect class="box" x="300" y="180" width="120" height="70"/>
-  <text class="text cmd" font-size="12" x="360" y="205" text-anchor="middle">/tk:design</text>
+  <rect class="box" x="300" y="180" width="120" height="70" rx="8"/>
+  <text class="mono cmd" font-size="12" x="360" y="205" text-anchor="middle">/tk:design</text>
   <text class="text subtitle" font-size="10" x="360" y="225" text-anchor="middle">Frontend UI</text>
   <text class="text subtitle" font-size="10" x="360" y="240" text-anchor="middle">No AI slop</text>
 
-  <rect class="box" x="440" y="180" width="120" height="70"/>
-  <text class="text cmd" font-size="12" x="500" y="205" text-anchor="middle">/tk:clean</text>
+  <rect class="box" x="440" y="180" width="120" height="70" rx="8"/>
+  <text class="mono cmd" font-size="12" x="500" y="205" text-anchor="middle">/tk:clean</text>
   <text class="text subtitle" font-size="10" x="500" y="225" text-anchor="middle">Cleanup code</text>
   <text class="text subtitle" font-size="10" x="500" y="240" text-anchor="middle">4 cleaners</text>
 
-  <rect class="box" x="580" y="180" width="120" height="70"/>
-  <text class="text cmd" font-size="12" x="640" y="205" text-anchor="middle">/tk:doc</text>
+  <rect class="box" x="580" y="180" width="120" height="70" rx="8"/>
+  <text class="mono cmd" font-size="12" x="640" y="205" text-anchor="middle">/tk:doc</text>
   <text class="text subtitle" font-size="10" x="640" y="225" text-anchor="middle">Documentation</text>
   <text class="text subtitle" font-size="10" x="640" y="240" text-anchor="middle">4 generators</text>
 
-  <rect class="box" x="720" y="180" width="160" height="70"/>
-  <text class="text cmd" font-size="12" x="800" y="205" text-anchor="middle">/tk:learn</text>
-  <text class="text subtitle" font-size="10" x="800" y="225" text-anchor="middle">Capture gotchas</text>
-  <text class="text subtitle" font-size="10" x="800" y="240" text-anchor="middle">& patterns</text>
+  <rect class="box" x="720" y="180" width="160" height="70" rx="8"/>
+  <text class="mono cmd" font-size="12" x="800" y="205" text-anchor="middle">/tk:opinion</text>
+  <text class="text subtitle" font-size="10" x="800" y="225" text-anchor="middle">Project audit</text>
+  <text class="text subtitle" font-size="10" x="800" y="240" text-anchor="middle">Honest feedback</text>
 
-  <!-- Mode legend -->
   <text class="text subtitle" font-size="11" x="30" y="290">Modes:</text>
   <circle class="mode-light" cx="90" cy="286" r="5"/>
   <text class="text subtitle" font-size="11" x="100" y="290">light (fast)</text>

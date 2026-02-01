@@ -6,7 +6,7 @@
 
 <br>
 
-![TK Terminal](assets/terminal-animated.svg)
+![TK Terminal](assets/terminal.svg)
 
 <br>
 
