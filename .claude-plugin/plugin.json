@@ -1,0 +1,97 @@
+{
+  "name": "tk",
+  "displayName": "TK - Token Killer",
+  "version": "1.0.0",
+  "description": "Token-optimized commands for Claude Code. Combines patterns from Get Shit Done, Ralph, and Anthropic plugins with ~78% fewer tokens.",
+  "author": "colbywest5",
+  "repository": "https://github.com/colbywest5/tk-Claude-Skill",
+  "license": "MIT",
+  "keywords": [
+    "tokens",
+    "optimization",
+    "workflow",
+    "development",
+    "productivity",
+    "multi-agent"
+  ],
+  "commands": [
+    {
+      "name": "tk:map",
+      "description": "Map project and create context (AGENTS.md, .planning/). Run this first."
+    },
+    {
+      "name": "tk:build",
+      "description": "Build features using 7-phase workflow with optional parallel agents"
+    },
+    {
+      "name": "tk:design",
+      "description": "Create distinctive frontend interfaces - no generic AI aesthetics"
+    },
+    {
+      "name": "tk:debug",
+      "description": "Systematic debugging with hypothesis testing and auto-revert"
+    },
+    {
+      "name": "tk:qa",
+      "description": "QA testing with security vulnerability scanning"
+    },
+    {
+      "name": "tk:review",
+      "description": "Code review with parallel reviewers"
+    },
+    {
+      "name": "tk:clean",
+      "description": "Cleanup codebase - dead code, unused deps, refactoring"
+    },
+    {
+      "name": "tk:doc",
+      "description": "Generate documentation - README, API docs, architecture"
+    },
+    {
+      "name": "tk:deploy",
+      "description": "Deploy with pre-flight checks and post-deploy verification"
+    },
+    {
+      "name": "tk:init",
+      "description": "Initialize new project with preferred stack"
+    },
+    {
+      "name": "tk:resume",
+      "description": "Resume interrupted work from .planning/STATE.md"
+    },
+    {
+      "name": "tk:learn",
+      "description": "Capture gotchas, patterns, and decisions"
+    },
+    {
+      "name": "tk:opinion",
+      "description": "Get honest project audit with actionable feedback"
+    },
+    {
+      "name": "tk:status",
+      "description": "Quick project health check"
+    },
+    {
+      "name": "tk:tokens",
+      "description": "Show token usage estimates"
+    },
+    {
+      "name": "tk:help",
+      "description": "Show all commands and usage"
+    }
+  ],
+  "agents": [
+    "code-explorer",
+    "code-architect", 
+    "code-reviewer",
+    "security-auditor",
+    "architecture-auditor",
+    "deps-auditor",
+    "dx-auditor"
+  ],
+  "modes": {
+    "light": "Fast execution, minimal questions, no SubAgents",
+    "medium": "Balanced approach, 2-3 clarifying questions",
+    "heavy": "Full workflow with parallel SubAgents + DOCS agent"
+  }
+}

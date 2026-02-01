@@ -26,27 +26,63 @@ The best AI coding workflows—[Get Shit Done](https://github.com/glittercowboy/
 
 ---
 
-## Install
+## Installation
 
-**NPM (recommended):**
+### Method 1: Claude Code Plugin (Recommended)
+
+```bash
+# In Claude Code, run:
+/plugin install https://github.com/colbywest5/tk-Claude-Skill
+```
+
+Or add to your project's `.claude/settings.json`:
+```json
+{
+  "plugins": [
+    "https://github.com/colbywest5/tk-Claude-Skill"
+  ]
+}
+```
+
+### Method 2: NPX Installer
+
 ```bash
 npx tk-claude-skill
 ```
 
-**One-line install:**
+This installs to `~/.claude/commands/` (global) or `.claude/commands/` (local).
+
+### Method 3: One-Line Script
+
 ```bash
 curl -fsSL https://raw.githubusercontent.com/colbywest5/tk-Claude-Skill/main/install.sh | bash
 ```
 
-**Manual:**
+### Method 4: Manual
+
 ```bash
 git clone https://github.com/colbywest5/tk-Claude-Skill.git
 cd tk-Claude-Skill
+
+# Global install (all projects)
 cp tk.md ~/.claude/commands/
-cp -r commands/ ~/.claude/commands/tk/
+mkdir -p ~/.claude/commands/tk
+cp commands/* ~/.claude/commands/tk/
+
+# Or local install (current project only)
+mkdir -p .claude/commands/tk
+cp tk.md .claude/commands/
+cp commands/* .claude/commands/tk/
 ```
 
-Then restart Claude Code and run `/tk:help`.
+### Verify Installation
+
+Restart Claude Code, then run:
+```bash
+/tk:help
+```
+
+You should see all 16 commands listed.
 
 ---
 
@@ -211,6 +247,27 @@ AGENTS.md              # Project knowledge base
 ├── DECISIONS.md       # Decisions with rationale
 ├── CODEBASE.md        # File map
 └── ARCHITECTURE.md    # System design
+```
+
+---
+
+## Plugin Structure
+
+TK follows the Claude Code plugin format:
+
+```
+tk-Claude-Skill/
+├── .claude-plugin/
+│   └── plugin.json      # Plugin metadata
+├── commands/            # Slash commands
+│   ├── _shared.md       # Shared behaviors
+│   ├── map.md
+│   ├── build.md
+│   ├── design.md
+│   └── ...
+├── mcp/                 # MCP integration
+├── tk.md                # Main router
+└── README.md
 ```
 
 ---
