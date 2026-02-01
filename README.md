@@ -1,43 +1,43 @@
 # TK - Token Killer
 
-**79% token reduction** while maintaining full capabilities.
+**~79% token reduction** while maintaining full capabilities.
 
-A token-optimized command system for Claude Code / AI coding assistants. Compressed from ~133KB to ~33KB without losing any functionality.
+A token-optimized command system for Claude Code and AI coding assistants. Dramatically reduces token consumption without losing any functionality.
 
 ## Quick Start
 
 ```bash
-/tk:[map] [heavy]    # Map your project first (creates context)
-/tk:[build] [medium] Add user authentication
-/tk:[debug] [light]  The API returns 500 errors
+/tk:map heavy    # Map your project first (creates context)
+/tk:build medium Add user authentication
+/tk:debug light  The API returns 500 errors
 ```
 
 ## Commands
 
 | Command | Purpose |
 |---------|---------|
-| `/tk:[map]` | Map project, create context **(RUN FIRST)** |
-| `/tk:[build]` | Build/create something |
-| `/tk:[design]` | Create distinctive frontend interfaces |
-| `/tk:[debug]` | Fix a problem |
-| `/tk:[qa]` | Test something |
-| `/tk:[review]` | Code review |
-| `/tk:[clean]` | Cleanup codebase |
-| `/tk:[doc]` | Generate documentation |
-| `/tk:[deploy]` | Deploy to production |
-| `/tk:[init]` | Initialize new project |
-| `/tk:[resume]` | Resume interrupted work |
-| `/tk:[learn]` | Capture a learning |
-| `/tk:[status]` | Show project status |
-| `/tk:[help]` | Show help |
+| `/tk:map` | Map project, create context **(RUN FIRST)** |
+| `/tk:build` | Build/create something |
+| `/tk:design` | Create distinctive frontend interfaces |
+| `/tk:debug` | Fix a problem |
+| `/tk:qa` | Test something |
+| `/tk:review` | Code review |
+| `/tk:clean` | Cleanup codebase |
+| `/tk:doc` | Generate documentation |
+| `/tk:deploy` | Deploy to production |
+| `/tk:init` | Initialize new project |
+| `/tk:resume` | Resume interrupted work |
+| `/tk:learn` | Capture a learning |
+| `/tk:status` | Show project status |
+| `/tk:help` | Show help |
 
 ## Modes
 
 | Mode | Description | SubAgents |
 |------|-------------|-----------|
-| `[light]` | Fast, minimal interaction | No |
-| `[medium]` | Balanced, key decisions | Optional |
-| `[heavy]` | Comprehensive, parallel work | Yes + DOCS |
+| `light` | Fast, minimal interaction | No |
+| `medium` | Balanced, key decisions | Optional |
+| `heavy` | Comprehensive, parallel work | Yes + DOCS |
 
 ## Heavy Mode SubAgents
 
@@ -77,7 +77,7 @@ Autonomous agent loop patterns:
 - **Stop conditions** - clear completion criteria
 
 ### From [feature-dev](https://github.com/anthropics/claude-code/tree/main/plugins/feature-dev)
-7-phase structured workflow (in `/tk:[build]`):
+7-phase structured workflow (in `/tk:build`):
 1. **Discovery** - Understand requirements
 2. **Codebase Exploration** - code-explorer agents trace existing patterns
 3. **Clarifying Questions** - MANDATORY - resolve all ambiguities
@@ -87,7 +87,7 @@ Autonomous agent loop patterns:
 7. **Summary** - Document what was built
 
 ### From [security-guidance](https://github.com/anthropics/claude-code/tree/main/plugins/security-guidance)
-Security vulnerability scanning (in `/tk:[qa]`):
+Security vulnerability scanning (in `/tk:qa`):
 - Command injection (`exec`, `os.system`, `child_process`)
 - Code injection (`eval`, `new Function`)
 - XSS (`innerHTML`, `dangerouslySetInnerHTML`, `document.write`)
@@ -97,7 +97,7 @@ Security vulnerability scanning (in `/tk:[qa]`):
 - npm audit vulnerabilities
 
 ### From [frontend-design](https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design)
-Distinctive UI creation (in `/tk:[design]`):
+Distinctive UI creation (in `/tk:design`):
 - **Bold aesthetic direction** - no generic "AI slop"
 - **Typography** - distinctive fonts, no Inter/Arial/Roboto
 - **Color & theme** - CSS variables, dominant + accent palettes
@@ -137,26 +137,26 @@ cp -r commands/ .claude/commands/tk/
 ## File Structure
 
 ```
-tk.md                  # Main router (1.6 KB)
+tk.md                  # Main router
 commands/
-├── _shared.md         # Shared behaviors (2.4 KB)
-├── map.md             # Map project (2.6 KB)
-├── build.md           # Build features (4.4 KB)
-├── design.md          # Frontend design (4.9 KB)
-├── debug.md           # Debug problems (2.4 KB)
-├── qa.md              # QA + security (6.5 KB)
-├── review.md          # Code review (2.1 KB)
-├── clean.md           # Cleanup (1.9 KB)
-├── doc.md             # Documentation (1.6 KB)
-├── deploy.md          # Deployment (2.3 KB)
-├── init.md            # New project (1.9 KB)
-├── resume.md          # Resume work (0.9 KB)
-├── learn.md           # Capture learnings (1.2 KB)
-├── status.md          # Project status (0.9 KB)
-└── help.md            # Help reference (1.9 KB)
+├── _shared.md         # Shared behaviors
+├── map.md             # Map project
+├── build.md           # Build features
+├── design.md          # Frontend design
+├── debug.md           # Debug problems
+├── qa.md              # QA + security
+├── review.md          # Code review
+├── clean.md           # Cleanup
+├── doc.md             # Documentation
+├── deploy.md          # Deployment
+├── init.md            # New project
+├── resume.md          # Resume work
+├── learn.md           # Capture learnings
+├── status.md          # Project status
+└── help.md            # Help reference
 ```
 
-**Total: ~37KB** (down from ~133KB original)
+**Token optimized** - condensed prompts, removed redundancy, lazy-loading patterns
 
 ---
 

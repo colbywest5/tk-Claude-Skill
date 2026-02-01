@@ -1,6 +1,6 @@
 ---
 name: tk:_shared
-description: Core behaviors for ALL /tk:[command] calls. Read this first.
+description: Core behaviors for ALL /tk:command calls. Read this first.
 ---
 
 # Shared Behaviors
@@ -14,7 +14,7 @@ mkdir -p .planning
 
 # Context check
 if [ ! -f "AGENTS.md" ]; then
-    echo "⚠️ No AGENTS.md. Run /tk:[map] first or continue degraded."
+    echo "⚠️ No AGENTS.md. Run /tk:map first or continue degraded."
 fi
 
 # Freshness (warn if >7 days old)
@@ -69,10 +69,10 @@ echo -e "\n## [Pattern] ($(date +%Y-%m-%d))\n[description + example]" >> .planni
 
 ## Escalation
 
-- **[light] → [medium]:** After 2 failed attempts or unexpected complexity
-- **[medium] → [heavy]:** After 3 failed hypotheses or multiple interacting systems
+- **light → medium:** After 2 failed attempts or unexpected complexity
+- **medium → heavy:** After 3 failed hypotheses or multiple interacting systems
 
-## DOCS SubAgent ([heavy] mode only)
+## DOCS SubAgent (heavy mode only)
 
 Spawn with EVERY parallel group:
 ```
@@ -88,6 +88,6 @@ SubAgent DOCS: "Document in parallel:
 
 | Mode | Interaction | SubAgents | Time |
 |------|-------------|-----------|------|
-| [light] | Minimal, just do it | No | Fast |
-| [medium] | 2-3 questions, structured | Optional | Balanced |
-| [heavy] | Full interview, research | Yes + DOCS | Thorough |
+| light | Minimal, just do it | No | Fast |
+| medium | 2-3 questions, structured | Optional | Balanced |
+| heavy | Full interview, research | Yes + DOCS | Thorough |

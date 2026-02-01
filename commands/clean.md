@@ -1,6 +1,6 @@
 ---
 name: tk:clean
-description: Cleanup codebase. /tk:[$cmd] [light]|medium|heavy
+description: Cleanup codebase. /tk:[$cmd] light|medium|heavy
 allowed-tools:
   - Read
   - Write

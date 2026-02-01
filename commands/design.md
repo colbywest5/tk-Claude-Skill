@@ -1,6 +1,6 @@
 ---
 name: tk:design
-description: Create distinctive frontend interfaces. /tk:[$cmd] [light]|medium|heavy <what to build>
+description: Create distinctive frontend interfaces. /tk:[$cmd] light|medium|heavy <what to build>
 allowed-tools:
   - Read
   - Write

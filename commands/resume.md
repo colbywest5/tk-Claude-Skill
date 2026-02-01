@@ -8,7 +8,7 @@ allowed-tools:
   - SubAgent
 ---
 
-# /tk:[resume]
+# /tk:resume
 
 Resume work from .planning/STATE.md.
 
@@ -26,11 +26,11 @@ Extract: activeCommand, activeTask, mode, progress, last checkpoint
 [ -f "AGENTS.md" ] && echo "✓ AGENTS.md"
 git status --short
 ```
-If damaged: offer restore from checkpoint or /tk:[map] [light]
+If damaged: offer restore from checkpoint or /tk:map light
 
 ### 3. Show Status
 ```
-RESUMING: /tk:[build] [medium]
+RESUMING: /tk:build medium
 Task: Implement user authentication
 Progress:
   ✓ Task 1: Setup schema

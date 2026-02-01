@@ -1,6 +1,6 @@
 ---
 name: tk:doc
-description: Generate documentation. /tk:[$cmd] [light]|medium|heavy
+description: Generate documentation. /tk:[$cmd] light|medium|heavy
 allowed-tools:
   - Read
   - Write

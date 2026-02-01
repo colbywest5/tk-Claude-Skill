@@ -1,6 +1,6 @@
 ---
 name: tk:deploy
-description: Deployment. /tk:[$cmd] [light]|medium|heavy
+description: Deployment. /tk:[$cmd] light|medium|heavy
 allowed-tools:
   - Read
   - Write

@@ -1,6 +1,6 @@
 ---
 name: tk
-description: "Universal work command. Usage: /tk:[task] [mode] [message]"
+description: "Universal work command. Usage: /tk:task mode [message]"
 allowed-tools:
   - Read
   - Write
@@ -11,7 +11,7 @@ allowed-tools:
   - WebFetch
 ---
 
-# /tk:[task] [mode] [message]
+# /tk:task mode [message]
 
 **Tasks:** map, build, design, debug, qa, review, clean, doc, deploy, init, resume, learn, status, help
 **Modes:** light (fast), medium (balanced), heavy (comprehensive + parallel SubAgents)
@@ -26,7 +26,7 @@ allowed-tools:
 ## Help Reference
 
 ```
-/tk:[task] [mode] [message]
+/tk:task mode [message]
 
 TASKS:
   map      Map project, create context (RUN FIRST)
@@ -50,9 +50,9 @@ MODES:
   heavy    Comprehensive, parallel SubAgents + DOCS
 
 EXAMPLES:
-  /tk:[map] [heavy] This is a Next.js e-commerce app
-  /tk:[build] [medium] Add user authentication
-  /tk:[design] [heavy] Landing page for a premium fitness app
-  /tk:[debug] [light] API returns 500 on large requests
-  /tk:[qa] [heavy] Test everything before launch
+  /tk:map heavy This is a Next.js e-commerce app
+  /tk:build medium Add user authentication
+  /tk:design heavy Landing page for a premium fitness app
+  /tk:debug light API returns 500 on large requests
+  /tk:qa heavy Test everything before launch
 ```

@@ -1,6 +1,6 @@
 ---
 name: tk:review
-description: Code review. /tk:[$cmd] [light]|medium|heavy
+description: Code review. /tk:[$cmd] light|medium|heavy
 allowed-tools:
   - Read
   - Write

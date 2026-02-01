@@ -1,6 +1,6 @@
 ---
 name: tk:build
-description: Build something with structured workflow. /tk:[$cmd] [light]|medium|heavy <what to build>
+description: Build something with structured workflow. /tk:[$cmd] light|medium|heavy <what to build>
 allowed-tools:
   - Read
   - Write

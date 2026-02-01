@@ -6,7 +6,7 @@ allowed-tools:
   - Bash
 ---
 
-# /tk:[status]
+# /tk:status
 
 Quick project health overview.
 

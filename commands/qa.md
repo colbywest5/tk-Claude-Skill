@@ -1,6 +1,6 @@
 ---
 name: tk:qa
-description: QA testing with security analysis. /tk:[$cmd] [light]|medium|heavy <what to test>
+description: QA testing with security analysis. /tk:[$cmd] light|medium|heavy <what to test>
 allowed-tools:
   - Read
   - Write

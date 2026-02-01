@@ -8,7 +8,7 @@ allowed-tools:
   - AskUserQuestion
 ---
 
-# /tk:[learn]
+# /tk:learn
 
 Capture something learned for future reference.
 
