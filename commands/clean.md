@@ -13,16 +13,10 @@ $import(commands/tk/_shared.md)
 
 # TK v1.1.0 | /tk:clean [mode]
 
-## STEP 0: LOAD RULES (MANDATORY)
+## STEP 0: LOAD RULES (SILENT)
 
-**Before ANYTHING else, load and display rules:**
-
-1. Read .tk/RULES.md (or ~/.claude/tk-rules.md)
-2. Display: "RULES LOADED: [count] rules"
-3. List each rule
-4. Proceed only after rules are confirmed loaded
-
-See _shared.md for full rules loading procedure.
+Before ANY action: silently read .tk/RULES.md and follow ALL rules constantly.
+Do not display rules. Just follow them.
 
 Clean the codebase.
 

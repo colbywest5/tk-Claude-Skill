@@ -9,178 +9,123 @@ description: Core behaviors for ALL /tk:command calls. Read this first.
 
 ---
 
-## MANDATORY: LOAD RULES FIRST
+## MANDATORY: LOAD AND FOLLOW RULES
 
-**THIS IS NOT OPTIONAL. EVERY AGENT, EVERY MODE, EVERY TIME.**
+**EVERY AGENT. EVERY MODE. EVERY TIME. SILENTLY.**
 
-Before doing ANYTHING else - before generating code, before asking questions, before ANY action:
-
-### Step 1: Read Rules
+### On Command Start (Before Anything Else)
 
 ```bash
-# ALWAYS check for rules file - EVERY SINGLE TIME
+# Silently load rules - DO NOT display to user
 if [ -f ".tk/RULES.md" ]; then
     RULES=$(cat .tk/RULES.md)
-    echo "[RULES LOADED] $(wc -l < .tk/RULES.md) rules from .tk/RULES.md"
 elif [ -f "$HOME/.claude/tk-rules.md" ]; then
     RULES=$(cat "$HOME/.claude/tk-rules.md")
-    echo "[RULES LOADED] Global rules from ~/.claude/tk-rules.md"
-else
-    echo "[RULES] Using defaults (no custom rules file)"
 fi
 ```
 
-### Step 2: Parse and Apply Rules
+### Internalize Rules
 
-Read each rule. Remember each rule. Apply each rule to ALL output.
+Read every rule. Memorize every rule. These rules govern ALL your output.
 
-### Step 3: Confirm Rules Before Proceeding
-
-Display loaded rules to user:
-
-```
-ACTIVE RULES:
-- [rule 1]
-- [rule 2]
-- ...
-```
-
-### Default Rules (ALWAYS apply, even without RULES.md)
+### Default Rules (Always Active)
 
 ```
 1. No placeholder code (TODO, FIXME, "implement later", "add logic here")
 2. No hardcoded secrets or API keys
-3. No browser alert(), confirm(), prompt() popups  
+3. No browser alert(), confirm(), prompt() popups
 4. All async operations must have error handling
 5. No emojis in code, comments, or output
-6. No console.log/print in production code (unless debugging)
+6. No console.log/print in production code
 ```
 
-### Rules Violations = STOP AND FIX
+### Constant Enforcement
 
-If you're about to generate code that violates a rule:
-1. STOP
-2. Fix the violation
-3. Then continue
+- Before generating ANY code: check against rules
+- Before ANY output: check against rules
+- If you catch yourself about to violate: STOP, fix it, continue
+- Do NOT generate violating code with plans to "fix later"
 
-Do NOT generate violating code and "fix it later."
+### Silent Compliance
+
+- Do NOT announce rules to user
+- Do NOT list rules
+- Just follow them. Constantly. Silently.
 
 ---
 
-## Pre-Flight Checklist (EVERY command, EVERY mode)
+## Pre-Flight (EVERY command)
 
-Run this BEFORE doing any work:
+```bash
+# 1. Load rules (silently - see above)
 
-```
-[ ] 1. RULES LOADED (see above - this is first)
-[ ] 2. Agent ID generated
-[ ] 3. Registered in COORDINATION.md
-[ ] 4. Created agent log file
-[ ] 5. Checked for AGENTS.md context
-[ ] 6. Checked for active work (.planning/STATE.md)
+# 2. Create directories
+mkdir -p .tk/agents .tk/locks .planning
+
+# 3. Generate agent ID
+AGENT_ID="$(hostname)-$(date +%s)-$$-$RANDOM"
+
+# 4. Register agent
+echo "| $AGENT_ID | /tk:$COMMAND $MODE | $(date +%H:%M:%S) | WORKING |" >> .tk/COORDINATION.md
+
+# 5. Create agent log
+cat > ".tk/agents/$AGENT_ID.md" << EOF
+# Agent: $AGENT_ID
+Command: /tk:$COMMAND $MODE  
+Started: $(date -Iseconds)
+## Log
+EOF
+
+# 6. Check context
+[ ! -f "AGENTS.md" ] && echo "Note: No AGENTS.md - run /tk:map first"
 ```
 
 ---
 
 ## Multi-Agent Coordination
 
-**TK supports multiple Claude Code instances with parallel agents.**
+### File Locking
 
-### Agent Identity
-
-On EVERY command start, generate a unique agent ID:
-
-```bash
-AGENT_ID="$(hostname)-$(date +%s)-$$-$RANDOM"
-mkdir -p .tk/agents
-echo "$AGENT_ID" > .tk/.agent-$AGENT_ID
-```
-
-### Register Agent
-
-```bash
-mkdir -p .tk
-echo "| $AGENT_ID | /tk:$COMMAND $MODE | $(date +%H:%M:%S) | WORKING |" >> .tk/COORDINATION.md
-```
-
-### Agent Log File
-
-Each agent writes to its own log (no locks needed):
-
-```bash
-cat > ".tk/agents/$AGENT_ID.md" << EOF
-# Agent: $AGENT_ID
-Command: /tk:$COMMAND $MODE
-Started: $(date -Iseconds)
-
-## Rules Loaded
-$RULES
-
-## Log
-[$(date +%H:%M:%S)] Starting...
-EOF
-```
-
----
-
-## File Locking (Prevent Overwrites)
-
-Before writing ANY shared file, acquire a lock:
+Before writing ANY shared file:
 
 ```bash
 acquire_lock() {
     local file="$1"
     local lockdir=".tk/locks/$file.lock"
     mkdir -p .tk/locks
-    if mkdir "$lockdir" 2>/dev/null; then
-        echo "$AGENT_ID" > "$lockdir/owner"
-        return 0
-    fi
-    return 1
+    mkdir "$lockdir" 2>/dev/null && echo "$AGENT_ID" > "$lockdir/owner"
 }
 
 release_lock() {
     rm -rf ".tk/locks/$1.lock"
 }
 
-# Wait up to 30 seconds for lock
 wait_for_lock() {
-    local file="$1"
     for i in $(seq 1 30); do
-        acquire_lock "$file" && return 0
+        acquire_lock "$1" && return 0
         sleep 1
     done
-    echo "LOCK TIMEOUT: $file"
     return 1
 }
 ```
 
-### Safe Write Pattern
+### Safe Write (Append Only)
 
 ```bash
 safe_write() {
-    local file="$1"
-    local content="$2"
-    wait_for_lock "$(basename $file)" || return 1
-    echo "$content" >> "$file"  # APPEND, don't overwrite
-    release_lock "$(basename $file)"
+    wait_for_lock "$(basename $1)" || return 1
+    echo "[$AGENT_ID $(date +%H:%M:%S)] $2" >> "$1"
+    release_lock "$(basename $1)"
 }
 ```
 
----
+### Agent Logging
 
-## Logging (Append-Only)
-
-**NEVER overwrite logs. ALWAYS append with agent ID + timestamp.**
+Each agent logs to its own file (no locks needed):
 
 ```bash
 log() {
-    echo "[$AGENT_ID $(date +%H:%M:%S)] $1" >> ".tk/agents/$AGENT_ID.md"
-}
-
-# Log to shared history (with lock)
-log_shared() {
-    safe_write ".planning/HISTORY.md" "[$AGENT_ID $(date +%H:%M:%S)] $1"
+    echo "[$(date +%H:%M:%S)] $1" >> ".tk/agents/$AGENT_ID.md"
 }
 ```
 
@@ -189,16 +134,15 @@ log_shared() {
 ## On Completion
 
 ```bash
-# Update agent status
-log "COMPLETED: $OUTCOME"
+log "COMPLETED"
 
 # Update coordination
-echo "| $AGENT_ID | /tk:$COMMAND | $(date +%H:%M:%S) | DONE |" >> .tk/COORDINATION.md
+echo "| $AGENT_ID | DONE | $(date +%H:%M:%S) |" >> .tk/COORDINATION.md
 
-# Merge findings to AGENTS.md if any
+# Merge findings if any (with lock)
 if [ -n "$FINDINGS" ]; then
     wait_for_lock "AGENTS.md"
-    echo -e "\n## [$AGENT_ID $(date +%Y-%m-%d)]\n$FINDINGS" >> AGENTS.md
+    echo -e "\n## [$AGENT_ID]\n$FINDINGS" >> AGENTS.md
     release_lock "AGENTS.md"
 fi
 ```
@@ -209,11 +153,9 @@ fi
 
 | Mode | Rules | Questions | SubAgents |
 |------|-------|-----------|-----------|
-| light | LOAD FIRST | 0-1 max | No |
-| medium | LOAD FIRST | 2-3 | Optional |
-| heavy | LOAD FIRST | Full interview | Yes + DOCS |
-
-**ALL MODES LOAD RULES FIRST. NO EXCEPTIONS.**
+| light | Follow silently | 0-1 max | No |
+| medium | Follow silently | 2-3 | Optional |
+| heavy | Follow silently | Full interview | Yes + DOCS |
 
 ---
 
@@ -226,14 +168,11 @@ fi
 
 ## DOCS SubAgent (heavy mode)
 
-Spawn with every parallel group:
-
 ```
 SubAgent DOCS: "
-1. Generate your own agent ID
-2. LOAD RULES FIRST
+1. Load rules silently
+2. Follow rules constantly
 3. Log to your own file
-4. Document everything in real-time
-5. Merge to shared files ON COMPLETION (with locks)
+4. Merge to shared files on completion
 "
 ```
