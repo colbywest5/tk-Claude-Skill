@@ -9,9 +9,9 @@ allowed-tools:
   - Task
 ---
 
-$arguments
+$import(commands/tk/_shared.md)
 
-# /tk:opinion
+# TK v1.1.0 | /tk:opinion [mode]
 
 Audit the project and give honest, actionable opinions.
 

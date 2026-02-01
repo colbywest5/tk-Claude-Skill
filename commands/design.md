@@ -11,7 +11,9 @@ allowed-tools:
   - WebFetch
 ---
 
-# /tk:[$cmd] [mode] <message>
+$import(commands/tk/_shared.md)
+
+# TK v1.1.0 | /tk:design [mode]
 
 Create production-grade frontend interfaces with exceptional design quality. Avoid generic "AI slop" aesthetics.
 

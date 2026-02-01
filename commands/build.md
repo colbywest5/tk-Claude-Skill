@@ -11,7 +11,9 @@ allowed-tools:
   - WebFetch
 ---
 
-# /tk:[$cmd] [mode] <message>
+$import(commands/tk/_shared.md)
+
+# TK v1.1.0 | /tk:build [mode]
 
 Build what $MESSAGE describes using a structured 7-phase workflow.
 

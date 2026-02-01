@@ -9,7 +9,9 @@ allowed-tools:
   - AskUserQuestion
 ---
 
-# /tk:[$cmd] [mode]
+$import(commands/tk/_shared.md)
+
+# TK v1.1.0 | /tk:review [mode]
 
 Review code changes like a senior engineer.
 

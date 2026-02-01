@@ -7,6 +7,40 @@ description: Core behaviors for ALL /tk:command calls. Read this first.
 
 Every command uses these patterns. Apply them automatically.
 
+## Version
+
+```
+TK_VERSION=1.1.0
+```
+
+**On first run or after update:** Save version to `.tk/VERSION`
+
+```bash
+mkdir -p .tk
+echo "1.1.0" > .tk/VERSION
+```
+
+**On each run:** Check if update available (weekly check max)
+
+```bash
+# Only check once per week
+LAST_CHECK=".tk/.version-check"
+if [ ! -f "$LAST_CHECK" ] || [ $(find "$LAST_CHECK" -mtime +7 2>/dev/null) ]; then
+    LATEST=$(curl -fsSL "https://raw.githubusercontent.com/colbywest5/tk-Claude-Skill/main/package.json" 2>/dev/null | grep '"version"' | cut -d'"' -f4)
+    CURRENT=$(cat .tk/VERSION 2>/dev/null || echo "0.0.0")
+    if [ "$LATEST" != "$CURRENT" ] && [ -n "$LATEST" ]; then
+        echo "TK update available: $CURRENT -> $LATEST (run /tk:update)"
+    fi
+    touch "$LAST_CHECK"
+fi
+```
+
+**Display version:** Show in command output header
+
+```
+TK v1.1.0 | /tk:[command] [mode]
+```
+
 ## Pre-Flight (run before any task)
 
 ```bash

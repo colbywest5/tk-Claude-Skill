@@ -10,7 +10,9 @@ allowed-tools:
   - WebSearch
 ---
 
-# /tk:[$cmd] [mode]
+$import(commands/tk/_shared.md)
+
+# TK v1.1.0 | /tk:map [mode]
 
 Map project, create context. Without this, other commands work blind.
 

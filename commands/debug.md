@@ -10,7 +10,9 @@ allowed-tools:
   - AskUserQuestion
 ---
 
-# /tk:[$cmd] [mode] <message>
+$import(commands/tk/_shared.md)
+
+# TK v1.1.0 | /tk:debug [mode]
 
 Debug systematically. Break repair loops.
 
