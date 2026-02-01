@@ -1,97 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380">
   <defs>
     <style>
       .bg { fill: #0d1117; }
       .box { fill: #161b22; stroke: #30363d; stroke-width: 1; }
       .box-hl { fill: #1f2937; stroke: #58a6ff; stroke-width: 2; }
+      .box-rules { fill: #1f2937; stroke: #f0883e; stroke-width: 2; }
       .txt { font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; }
       .mono { font-family: ui-monospace, Menlo, Consolas, monospace; }
       .title { fill: #e6edf3; font-weight: 600; }
       .sub { fill: #7d8590; }
       .cmd { fill: #58a6ff; }
+      .cmd-orange { fill: #f0883e; }
       .arr { fill: none; stroke: #30363d; stroke-width: 2; }
       .arr-h { fill: #30363d; }
       .grn { fill: #3fb950; }
       .ylw { fill: #d29922; }
       .pur { fill: #a371f7; }
+      .org { fill: #f0883e; }
     </style>
   </defs>
 
-  <rect class="bg" width="900" height="320" rx="12" ry="12"/>
+  <rect class="bg" width="900" height="380" rx="12" ry="12"/>
 
-  <rect class="box-hl" x="20" y="40" width="140" height="100" rx="8" ry="8"/>
-  <text class="mono cmd" font-size="14" x="90" y="70" text-anchor="middle">/tk:map</text>
-  <text class="txt sub" font-size="11" x="90" y="95" text-anchor="middle">Create context</text>
-  <text class="txt sub" font-size="11" x="90" y="115" text-anchor="middle">AGENTS.md</text>
-  <text class="txt title" font-size="10" x="90" y="132" text-anchor="middle">RUN FIRST</text>
+  <!-- Rules box - special callout -->
+  <rect class="box-rules" x="20" y="40" width="140" height="80" rx="8" ry="8"/>
+  <text class="mono cmd-orange" font-size="14" x="90" y="65" text-anchor="middle">/tk:rules</text>
+  <text class="txt sub" font-size="11" x="90" y="85" text-anchor="middle">Set agent rules</text>
+  <text class="txt sub" font-size="11" x="90" y="102" text-anchor="middle">.tk/RULES.md</text>
 
-  <path class="arr" d="M 165 90 L 195 90"/>
-  <polygon class="arr-h" points="195,85 205,90 195,95"/>
+  <!-- Map -->
+  <rect class="box-hl" x="180" y="40" width="140" height="80" rx="8" ry="8"/>
+  <text class="mono cmd" font-size="14" x="250" y="65" text-anchor="middle">/tk:map</text>
+  <text class="txt sub" font-size="11" x="250" y="85" text-anchor="middle">Create context</text>
+  <text class="txt title" font-size="10" x="250" y="102" text-anchor="middle">RUN FIRST</text>
 
-  <rect class="box" x="210" y="40" width="140" height="100" rx="8" ry="8"/>
-  <text class="mono cmd" font-size="14" x="280" y="70" text-anchor="middle">/tk:build</text>
-  <text class="txt sub" font-size="11" x="280" y="95" text-anchor="middle">7-phase workflow</text>
-  <text class="txt sub" font-size="11" x="280" y="115" text-anchor="middle">Explore, Design</text>
-  <text class="txt sub" font-size="11" x="280" y="132" text-anchor="middle">Build, Review</text>
+  <path class="arr" d="M 325 80 L 355 80"/>
+  <polygon class="arr-h" points="355,75 365,80 355,85"/>
 
-  <path class="arr" d="M 355 90 L 385 90"/>
-  <polygon class="arr-h" points="385,85 395,90 385,95"/>
+  <!-- Build -->
+  <rect class="box" x="370" y="40" width="140" height="80" rx="8" ry="8"/>
+  <text class="mono cmd" font-size="14" x="440" y="65" text-anchor="middle">/tk:build</text>
+  <text class="txt sub" font-size="11" x="440" y="85" text-anchor="middle">7-phase workflow</text>
+  <text class="txt sub" font-size="11" x="440" y="102" text-anchor="middle">Build features</text>
 
-  <rect class="box" x="400" y="40" width="140" height="100" rx="8" ry="8"/>
-  <text class="mono cmd" font-size="14" x="470" y="70" text-anchor="middle">/tk:qa</text>
-  <text class="txt sub" font-size="11" x="470" y="95" text-anchor="middle">Test + Security</text>
-  <text class="txt sub" font-size="11" x="470" y="115" text-anchor="middle">6 specialists</text>
-  <text class="txt sub" font-size="11" x="470" y="132" text-anchor="middle">Vuln scanning</text>
+  <path class="arr" d="M 515 80 L 545 80"/>
+  <polygon class="arr-h" points="545,75 555,80 545,85"/>
 
-  <path class="arr" d="M 545 90 L 575 90"/>
-  <polygon class="arr-h" points="575,85 585,90 575,95"/>
+  <!-- QA -->
+  <rect class="box" x="560" y="40" width="140" height="80" rx="8" ry="8"/>
+  <text class="mono cmd" font-size="14" x="630" y="65" text-anchor="middle">/tk:qa</text>
+  <text class="txt sub" font-size="11" x="630" y="85" text-anchor="middle">Test + Security</text>
+  <text class="txt sub" font-size="11" x="630" y="102" text-anchor="middle">Vuln scanning</text>
 
-  <rect class="box" x="590" y="40" width="140" height="100" rx="8" ry="8"/>
-  <text class="mono cmd" font-size="14" x="660" y="70" text-anchor="middle">/tk:deploy</text>
-  <text class="txt sub" font-size="11" x="660" y="95" text-anchor="middle">Pre-flight checks</text>
-  <text class="txt sub" font-size="11" x="660" y="115" text-anchor="middle">Deploy + verify</text>
-  <text class="txt sub" font-size="11" x="660" y="132" text-anchor="middle">Auto-rollback</text>
+  <path class="arr" d="M 705 80 L 735 80"/>
+  <polygon class="arr-h" points="735,75 745,80 735,85"/>
 
-  <rect class="box" x="760" y="55" width="120" height="70" rx="8" ry="8" stroke="#3fb950"/>
-  <text class="txt grn" font-size="24" x="820" y="85" text-anchor="middle">OK</text>
-  <text class="txt sub" font-size="11" x="820" y="110" text-anchor="middle">Production</text>
+  <!-- Deploy -->
+  <rect class="box" x="750" y="40" width="130" height="80" rx="8" ry="8" stroke="#3fb950"/>
+  <text class="mono cmd" font-size="14" x="815" y="65" text-anchor="middle">/tk:deploy</text>
+  <text class="txt sub" font-size="11" x="815" y="85" text-anchor="middle">Ship it</text>
+  <text class="txt grn" font-size="11" x="815" y="102" text-anchor="middle">Production</text>
 
-  <rect class="box" x="20" y="180" width="120" height="70" rx="8" ry="8"/>
-  <text class="mono cmd" font-size="12" x="80" y="205" text-anchor="middle">/tk:debug</text>
-  <text class="txt sub" font-size="10" x="80" y="225" text-anchor="middle">Fix problems</text>
-  <text class="txt sub" font-size="10" x="80" y="240" text-anchor="middle">4 investigators</text>
+  <!-- Second row -->
+  <rect class="box" x="20" y="150" width="120" height="65" rx="8" ry="8"/>
+  <text class="mono cmd" font-size="12" x="80" y="172" text-anchor="middle">/tk:debug</text>
+  <text class="txt sub" font-size="10" x="80" y="190" text-anchor="middle">Fix problems</text>
+  <text class="txt sub" font-size="10" x="80" y="205" text-anchor="middle">4 investigators</text>
 
-  <rect class="box" x="160" y="180" width="120" height="70" rx="8" ry="8"/>
-  <text class="mono cmd" font-size="12" x="220" y="205" text-anchor="middle">/tk:review</text>
-  <text class="txt sub" font-size="10" x="220" y="225" text-anchor="middle">Code review</text>
-  <text class="txt sub" font-size="10" x="220" y="240" text-anchor="middle">4 reviewers</text>
+  <rect class="box" x="160" y="150" width="120" height="65" rx="8" ry="8"/>
+  <text class="mono cmd" font-size="12" x="220" y="172" text-anchor="middle">/tk:review</text>
+  <text class="txt sub" font-size="10" x="220" y="190" text-anchor="middle">Code review</text>
+  <text class="txt sub" font-size="10" x="220" y="205" text-anchor="middle">4 reviewers</text>
 
-  <rect class="box" x="300" y="180" width="120" height="70" rx="8" ry="8"/>
-  <text class="mono cmd" font-size="12" x="360" y="205" text-anchor="middle">/tk:design</text>
-  <text class="txt sub" font-size="10" x="360" y="225" text-anchor="middle">Frontend UI</text>
-  <text class="txt sub" font-size="10" x="360" y="240" text-anchor="middle">No AI slop</text>
+  <rect class="box" x="300" y="150" width="120" height="65" rx="8" ry="8"/>
+  <text class="mono cmd" font-size="12" x="360" y="172" text-anchor="middle">/tk:design</text>
+  <text class="txt sub" font-size="10" x="360" y="190" text-anchor="middle">Frontend UI</text>
+  <text class="txt sub" font-size="10" x="360" y="205" text-anchor="middle">No AI slop</text>
 
-  <rect class="box" x="440" y="180" width="120" height="70" rx="8" ry="8"/>
-  <text class="mono cmd" font-size="12" x="500" y="205" text-anchor="middle">/tk:clean</text>
-  <text class="txt sub" font-size="10" x="500" y="225" text-anchor="middle">Cleanup code</text>
-  <text class="txt sub" font-size="10" x="500" y="240" text-anchor="middle">4 cleaners</text>
+  <rect class="box" x="440" y="150" width="120" height="65" rx="8" ry="8"/>
+  <text class="mono cmd" font-size="12" x="500" y="172" text-anchor="middle">/tk:clean</text>
+  <text class="txt sub" font-size="10" x="500" y="190" text-anchor="middle">Cleanup code</text>
+  <text class="txt sub" font-size="10" x="500" y="205" text-anchor="middle">4 cleaners</text>
 
-  <rect class="box" x="580" y="180" width="120" height="70" rx="8" ry="8"/>
-  <text class="mono cmd" font-size="12" x="640" y="205" text-anchor="middle">/tk:doc</text>
-  <text class="txt sub" font-size="10" x="640" y="225" text-anchor="middle">Documentation</text>
-  <text class="txt sub" font-size="10" x="640" y="240" text-anchor="middle">4 generators</text>
+  <rect class="box" x="580" y="150" width="120" height="65" rx="8" ry="8"/>
+  <text class="mono cmd" font-size="12" x="640" y="172" text-anchor="middle">/tk:doc</text>
+  <text class="txt sub" font-size="10" x="640" y="190" text-anchor="middle">Documentation</text>
+  <text class="txt sub" font-size="10" x="640" y="205" text-anchor="middle">4 generators</text>
 
-  <rect class="box" x="720" y="180" width="160" height="70" rx="8" ry="8"/>
-  <text class="mono cmd" font-size="12" x="800" y="205" text-anchor="middle">/tk:opinion</text>
-  <text class="txt sub" font-size="10" x="800" y="225" text-anchor="middle">Project audit</text>
-  <text class="txt sub" font-size="10" x="800" y="240" text-anchor="middle">Honest feedback</text>
+  <rect class="box" x="720" y="150" width="160" height="65" rx="8" ry="8"/>
+  <text class="mono cmd" font-size="12" x="800" y="172" text-anchor="middle">/tk:opinion</text>
+  <text class="txt sub" font-size="10" x="800" y="190" text-anchor="middle">Project audit</text>
+  <text class="txt sub" font-size="10" x="800" y="205" text-anchor="middle">Honest feedback</text>
 
-  <text class="txt sub" font-size="11" x="30" y="290">Modes:</text>
-  <circle class="grn" cx="90" cy="286" r="5"/>
-  <text class="txt sub" font-size="11" x="100" y="290">light (fast)</text>
-  <circle class="ylw" cx="200" cy="286" r="5"/>
-  <text class="txt sub" font-size="11" x="210" y="290">medium (balanced)</text>
-  <circle class="pur" cx="340" cy="286" r="5"/>
-  <text class="txt sub" font-size="11" x="350" y="290">heavy (parallel SubAgents)</text>
+  <!-- Third row - utilities -->
+  <rect class="box" x="20" y="240" width="100" height="55" rx="8" ry="8"/>
+  <text class="mono cmd" font-size="11" x="70" y="260" text-anchor="middle">/tk:init</text>
+  <text class="txt sub" font-size="9" x="70" y="278" text-anchor="middle">New project</text>
+
+  <rect class="box" x="140" y="240" width="100" height="55" rx="8" ry="8"/>
+  <text class="mono cmd" font-size="11" x="190" y="260" text-anchor="middle">/tk:resume</text>
+  <text class="txt sub" font-size="9" x="190" y="278" text-anchor="middle">Continue work</text>
+
+  <rect class="box" x="260" y="240" width="100" height="55" rx="8" ry="8"/>
+  <text class="mono cmd" font-size="11" x="310" y="260" text-anchor="middle">/tk:learn</text>
+  <text class="txt sub" font-size="9" x="310" y="278" text-anchor="middle">Capture gotchas</text>
+
+  <rect class="box" x="380" y="240" width="100" height="55" rx="8" ry="8"/>
+  <text class="mono cmd" font-size="11" x="430" y="260" text-anchor="middle">/tk:status</text>
+  <text class="txt sub" font-size="9" x="430" y="278" text-anchor="middle">Health check</text>
+
+  <rect class="box" x="500" y="240" width="100" height="55" rx="8" ry="8"/>
+  <text class="mono cmd" font-size="11" x="550" y="260" text-anchor="middle">/tk:tokens</text>
+  <text class="txt sub" font-size="9" x="550" y="278" text-anchor="middle">Usage stats</text>
+
+  <rect class="box" x="620" y="240" width="100" height="55" rx="8" ry="8"/>
+  <text class="mono cmd" font-size="11" x="670" y="260" text-anchor="middle">/tk:help</text>
+  <text class="txt sub" font-size="9" x="670" y="278" text-anchor="middle">All commands</text>
+
+  <!-- Mode legend -->
+  <text class="txt sub" font-size="11" x="30" y="330">Modes:</text>
+  <circle class="grn" cx="90" cy="326" r="5"/>
+  <text class="txt sub" font-size="11" x="100" y="330">light</text>
+  <circle class="ylw" cx="160" cy="326" r="5"/>
+  <text class="txt sub" font-size="11" x="170" y="330">medium</text>
+  <circle class="pur" cx="250" cy="326" r="5"/>
+  <text class="txt sub" font-size="11" x="260" y="330">heavy</text>
+  
+  <text class="txt sub" font-size="11" x="360" y="330">|</text>
+  
+  <circle class="org" cx="390" cy="326" r="5"/>
+  <text class="txt sub" font-size="11" x="400" y="330">/tk:rules applies to ALL commands</text>
 </svg>

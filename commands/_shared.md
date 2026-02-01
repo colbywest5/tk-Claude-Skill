@@ -11,18 +11,42 @@ Every command uses these patterns. Apply them automatically.
 
 ```bash
 mkdir -p .planning
+mkdir -p .tk
+
+# Load rules (project > global > defaults)
+RULES=""
+if [ -f ".tk/RULES.md" ]; then
+    RULES=$(cat .tk/RULES.md)
+elif [ -f "$HOME/.claude/tk-rules.md" ]; then
+    RULES=$(cat "$HOME/.claude/tk-rules.md")
+fi
 
 # Context check
 if [ ! -f "AGENTS.md" ]; then
-    echo "⚠️ No AGENTS.md. Run /tk:map first or continue degraded."
+    echo "No AGENTS.md. Run /tk:map first or continue degraded."
 fi
 
 # Freshness (warn if >7 days old)
-[ -f "AGENTS.md" ] && DAYS_OLD=$(( ($(date +%s) - $(stat -c %Y AGENTS.md 2>/dev/null || stat -f %m AGENTS.md)) / 86400 )) && [ $DAYS_OLD -gt 7 ] && echo "⚠️ Context $DAYS_OLD days old"
+[ -f "AGENTS.md" ] && DAYS_OLD=$(( ($(date +%s) - $(stat -c %Y AGENTS.md 2>/dev/null || stat -f %m AGENTS.md)) / 86400 )) && [ $DAYS_OLD -gt 7 ] && echo "Context $DAYS_OLD days old"
 
 # Active work check
-[ -f ".planning/STATE.md" ] && grep -q "activeTask:.*[^none]" .planning/STATE.md && echo "📋 Active work found - ask resume or fresh start"
+[ -f ".planning/STATE.md" ] && grep -q "activeTask:.*[^none]" .planning/STATE.md && echo "Active work found - ask resume or fresh start"
 ```
+
+## Rules Enforcement
+
+**ALL agents MUST check and follow `.tk/RULES.md` before generating any code or output.**
+
+Default rules (always apply even without RULES.md):
+```
+- No placeholder code (TODO, FIXME, "implement later")
+- No hardcoded secrets or API keys
+- No browser alert(), confirm(), prompt() popups
+- All async operations must have error handling
+- No emojis in code or commit messages
+```
+
+If RULES.md exists, parse and apply ALL rules. Violations = fix before completing.
 
 ## State Tracking
 

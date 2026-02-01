@@ -114,6 +114,12 @@ You should see all 16 commands listed.
 | `/tk:clean` | Removes dead code, unused deps, console.logs. Refactors for clarity. |
 | `/tk:design` | Creates distinctive frontend interfaces—unique typography, bold colors, no AI slop. |
 
+### Configuration
+
+| Command | What it does |
+|---------|--------------|
+| `/tk:rules` | **Set global rules for all agents.** No emojis, no placeholders, no browser popups, etc. Rules are enforced on every command. |
+
 ### Analysis & Utilities
 
 | Command | What it does |
@@ -143,6 +149,36 @@ Every command supports three modes:
 /tk:build light    # Just build it
 /tk:build medium   # Ask questions, then build
 /tk:build heavy    # Full 7-phase with parallel agents
+```
+
+---
+
+## `/tk:rules` — Global Agent Rules
+
+Set rules that ALL TK agents must follow:
+
+```bash
+/tk:rules              # Interactive setup
+/tk:rules add <rule>   # Add a single rule
+/tk:rules list         # Show current rules
+```
+
+**Example rules:**
+- No emojis in output or code
+- No placeholder code (TODO, FIXME, "implement later")
+- No browser popups (alert, confirm, prompt)
+- No console.log in production code
+- All async operations must have error handling
+- Use conventional commit format
+
+Rules are stored in `.tk/RULES.md` and enforced on every command.
+
+**Default rules (always apply):**
+```
+- No placeholder code
+- No hardcoded secrets
+- No browser popups
+- Error handling required for async
 ```
 
 ---

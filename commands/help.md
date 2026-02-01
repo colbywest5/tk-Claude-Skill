@@ -35,6 +35,7 @@ UTILITIES
   /tk:resume    Resume interrupted work
   /tk:learn     Capture gotcha/pattern/decision
   /tk:opinion   Get honest project audit + opinions
+  /tk:rules     Set global rules for all agents
   /tk:tokens    Token usage estimates
   /tk:help      This help
 

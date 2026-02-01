@@ -68,6 +68,10 @@
       "description": "Get honest project audit with actionable feedback"
     },
     {
+      "name": "tk:rules",
+      "description": "Set global rules for all TK agents (no emojis, no placeholders, etc.)"
+    },
+    {
       "name": "tk:status",
       "description": "Quick project health check"
     },
