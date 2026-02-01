@@ -80,6 +80,10 @@
       "description": "Show token usage estimates"
     },
     {
+      "name": "tk:update",
+      "description": "Update TK to the latest version from GitHub"
+    },
+    {
       "name": "tk:help",
       "description": "Show all commands and usage"
     }
