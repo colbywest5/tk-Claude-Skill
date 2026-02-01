@@ -1,6 +1,6 @@
 ---
 name: tk:review
-description: Code review. /tk review light|medium|heavy
+description: Code review. /tk:[$cmd] [light]|medium|heavy
 allowed-tools:
   - Read
   - Write
@@ -9,7 +9,7 @@ allowed-tools:
   - AskUserQuestion
 ---
 
-# /tk review <mode>
+# /tk:[$cmd] [mode]
 
 Review code changes like a senior engineer.
 

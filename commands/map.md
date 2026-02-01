@@ -10,7 +10,7 @@ allowed-tools:
   - WebSearch
 ---
 
-# /tk map <mode>
+# /tk:[$cmd] [mode]
 
 Map project, create context. Without this, other commands work blind.
 
@@ -75,7 +75,7 @@ EOF
 cat > .planning/HISTORY.md << 'EOF'
 # Work History
 ## [date]
-### [time] - /tk map $MODE
+### [time] - /tk:map $MODE
 EOF
 
 # ISSUES.md, DECISIONS.md - initialize empty
@@ -84,7 +84,7 @@ EOF
 ### 5. Commit
 ```bash
 git add AGENTS.md .planning/
-git commit -m "docs: add project context (/tk map $MODE)"
+git commit -m "docs: add project context (/tk:map $MODE)"
 ```
 
 ### 6. Report
@@ -92,5 +92,5 @@ git commit -m "docs: add project context (/tk map $MODE)"
 ✓ Context created
 Files: AGENTS.md, .planning/CODEBASE.md, .planning/ARCHITECTURE.md [+ mode-specific]
 Context size: [X] words
-Ready: /tk build, /tk debug, etc.
+Ready: /tk:build, /tk:debug, etc.
 ```

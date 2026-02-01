@@ -2,42 +2,42 @@
 
 **79% token reduction** while maintaining full capabilities.
 
-A token-optimized command system for Claude Code / AI coding assistants. Originally based on worksmith patterns, compressed from ~133KB to ~33KB without losing any functionality.
+A token-optimized command system for Claude Code / AI coding assistants. Compressed from ~133KB to ~33KB without losing any functionality.
 
 ## Quick Start
 
 ```bash
-/tk map heavy    # Map your project first (creates context)
-/tk build medium Add user authentication
-/tk debug light  The API returns 500 errors
+/tk:[map] [heavy]    # Map your project first (creates context)
+/tk:[build] [medium] Add user authentication
+/tk:[debug] [light]  The API returns 500 errors
 ```
 
 ## Commands
 
 | Command | Purpose |
 |---------|---------|
-| `map` | Map project, create context **(RUN FIRST)** |
-| `build` | Build/create something |
-| `design` | Create distinctive frontend interfaces |
-| `debug` | Fix a problem |
-| `qa` | Test something |
-| `review` | Code review |
-| `clean` | Cleanup codebase |
-| `doc` | Generate documentation |
-| `deploy` | Deploy to production |
-| `init` | Initialize new project |
-| `resume` | Resume interrupted work |
-| `learn` | Capture a learning |
-| `status` | Show project status |
-| `help` | Show help |
+| `/tk:[map]` | Map project, create context **(RUN FIRST)** |
+| `/tk:[build]` | Build/create something |
+| `/tk:[design]` | Create distinctive frontend interfaces |
+| `/tk:[debug]` | Fix a problem |
+| `/tk:[qa]` | Test something |
+| `/tk:[review]` | Code review |
+| `/tk:[clean]` | Cleanup codebase |
+| `/tk:[doc]` | Generate documentation |
+| `/tk:[deploy]` | Deploy to production |
+| `/tk:[init]` | Initialize new project |
+| `/tk:[resume]` | Resume interrupted work |
+| `/tk:[learn]` | Capture a learning |
+| `/tk:[status]` | Show project status |
+| `/tk:[help]` | Show help |
 
 ## Modes
 
 | Mode | Description | SubAgents |
 |------|-------------|-----------|
-| `light` | Fast, minimal interaction | No |
-| `medium` | Balanced, key decisions | Optional |
-| `heavy` | Comprehensive, parallel work | Yes + DOCS |
+| `[light]` | Fast, minimal interaction | No |
+| `[medium]` | Balanced, key decisions | Optional |
+| `[heavy]` | Comprehensive, parallel work | Yes + DOCS |
 
 ## Heavy Mode SubAgents
 
@@ -54,20 +54,40 @@ Every heavy mode operation includes a dedicated **DOCS SubAgent** that documents
 | clean | 4 cleaners + DOCS |
 | deploy | 4 pre-flight + 4 post-deploy + DOCS |
 
+---
+
 ## Integrated Skills
 
-### Build Command (feature-dev)
-7-phase structured workflow:
+TK combines patterns from multiple best-in-class AI coding systems:
+
+### From [Get Shit Done](https://github.com/glittercowboy/get-shit-done)
+Context engineering and spec-driven development:
+- **Solves context rot** - quality degradation as context fills
+- **Multi-agent orchestration** - thin orchestrator spawns specialized agents
+- **XML prompt formatting** - structured tasks with verification steps
+- **Atomic git commits** - each task gets its own commit
+- **Fresh context per execution** - 200k tokens purely for implementation
+
+### From [Ralph](https://github.com/snarktank/ralph)
+Autonomous agent loop patterns:
+- **Each iteration = fresh context** - memory via git, progress files, state
+- **Small atomic tasks** - right-sized for single context window
+- **AGENTS.md updates** - learnings persist across iterations
+- **Feedback loops** - typecheck, tests, CI must stay green
+- **Stop conditions** - clear completion criteria
+
+### From [feature-dev](https://github.com/anthropics/claude-code/tree/main/plugins/feature-dev)
+7-phase structured workflow (in `/tk:[build]`):
 1. **Discovery** - Understand requirements
 2. **Codebase Exploration** - code-explorer agents trace existing patterns
 3. **Clarifying Questions** - MANDATORY - resolve all ambiguities
 4. **Architecture Design** - code-architect agents propose approaches
 5. **Implementation** - Build with approval
-6. **Quality Review** - code-reviewer agents check quality
+6. **Quality Review** - code-reviewer agents check quality (confidence >= 80)
 7. **Summary** - Document what was built
 
-### QA Command (security-guidance)
-Security vulnerability scanning for:
+### From [security-guidance](https://github.com/anthropics/claude-code/tree/main/plugins/security-guidance)
+Security vulnerability scanning (in `/tk:[qa]`):
 - Command injection (`exec`, `os.system`, `child_process`)
 - Code injection (`eval`, `new Function`)
 - XSS (`innerHTML`, `dangerouslySetInnerHTML`, `document.write`)
@@ -75,6 +95,16 @@ Security vulnerability scanning for:
 - GitHub Actions workflow injection
 - Hardcoded secrets
 - npm audit vulnerabilities
+
+### From [frontend-design](https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design)
+Distinctive UI creation (in `/tk:[design]`):
+- **Bold aesthetic direction** - no generic "AI slop"
+- **Typography** - distinctive fonts, no Inter/Arial/Roboto
+- **Color & theme** - CSS variables, dominant + accent palettes
+- **Motion** - CSS animations, staggered reveals, hover states
+- **Spatial composition** - asymmetry, overlap, grid-breaking
+
+---
 
 ## Key Files Created
 
@@ -92,7 +122,17 @@ AGENTS.md              # Master project knowledge
 
 ## Installation
 
-Copy `tk.md` and the `commands/` folder to your project or Claude Code commands directory.
+Copy `tk.md` and the `commands/` folder to your Claude Code commands directory:
+
+```bash
+# Global install
+cp tk.md ~/.claude/commands/
+cp -r commands/ ~/.claude/commands/tk/
+
+# Or local install
+cp tk.md .claude/commands/
+cp -r commands/ .claude/commands/tk/
+```
 
 ## File Structure
 
@@ -101,10 +141,10 @@ tk.md                  # Main router (1.6 KB)
 commands/
 ├── _shared.md         # Shared behaviors (2.4 KB)
 ├── map.md             # Map project (2.6 KB)
-├── build.md           # Build features (2.1 KB)
+├── build.md           # Build features (4.4 KB)
 ├── design.md          # Frontend design (4.9 KB)
 ├── debug.md           # Debug problems (2.4 KB)
-├── qa.md              # QA testing (2.0 KB)
+├── qa.md              # QA + security (6.5 KB)
 ├── review.md          # Code review (2.1 KB)
 ├── clean.md           # Cleanup (1.9 KB)
 ├── doc.md             # Documentation (1.6 KB)
@@ -116,14 +156,21 @@ commands/
 └── help.md            # Help reference (1.9 KB)
 ```
 
-**Total: ~33KB** (down from ~133KB original)
+**Total: ~37KB** (down from ~133KB original)
 
-## Integrations
+---
 
-Built with patterns from:
-- Anthropic's [frontend-design](https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design) skill
-- Anthropic's [feature-dev](https://github.com/anthropics/claude-code/tree/main/plugins/feature-dev) plugin
-- Anthropic's [security-guidance](https://github.com/anthropics/claude-code/tree/main/plugins/security-guidance) plugin
+## Credits
+
+Built by combining and optimizing patterns from:
+
+| Project | Author | What we took |
+|---------|--------|--------------|
+| [Get Shit Done](https://github.com/glittercowboy/get-shit-done) | @glittercowboy | Context engineering, multi-agent orchestration, atomic commits |
+| [Ralph](https://github.com/snarktank/ralph) | @snarktank | Autonomous loop patterns, fresh context per iteration, AGENTS.md updates |
+| [feature-dev](https://github.com/anthropics/claude-code/tree/main/plugins/feature-dev) | Anthropic | 7-phase workflow, code-explorer/architect/reviewer agents |
+| [security-guidance](https://github.com/anthropics/claude-code/tree/main/plugins/security-guidance) | Anthropic | Security pattern scanning, vulnerability detection |
+| [frontend-design](https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design) | Anthropic | Distinctive UI principles, anti-AI-slop guidelines |
 
 ## License
 

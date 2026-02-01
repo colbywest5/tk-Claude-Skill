@@ -5,41 +5,41 @@ allowed-tools:
   - Bash
 ---
 
-# /tk help
+# /tk:[help]
 
 ```
 ╔═══════════════════════════════════════════════════════════════╗
-║  /tk <task> <mode> <message>                                ║
+║  /tk:[task] [mode] [message]                                  ║
 ╚═══════════════════════════════════════════════════════════════╝
 
 CONTEXT (run first!)
-  map       Map project, create AGENTS.md and .planning/
+  /tk:[map]       Map project, create AGENTS.md and .planning/
 
 BUILD
-  build     Build/create something
-  design    Create distinctive frontend interfaces
-  init      Initialize new project
+  /tk:[build]     Build/create something
+  /tk:[design]    Create distinctive frontend interfaces
+  /tk:[init]      Initialize new project
 
 QUALITY
-  qa        Run tests (smoke → full → specialists)
-  review    Code review (quick → thorough → parallel)
-  clean     Cleanup (console.logs → dead code → refactor)
+  /tk:[qa]        Run tests + security scan
+  /tk:[review]    Code review
+  /tk:[clean]     Cleanup codebase
 
 TROUBLESHOOTING
-  debug     Fix problems (2 attempts → hypotheses → parallel)
+  /tk:[debug]     Fix problems systematically
 
 UTILITIES
-  doc       Generate documentation
-  deploy    Deploy (just deploy → verify → full pipeline)
-  status    Project health (no mode)
-  resume    Resume interrupted work
-  learn     Capture gotcha/pattern/decision
-  help      This help
+  /tk:[doc]       Generate documentation
+  /tk:[deploy]    Deploy to production
+  /tk:[status]    Project health (no mode)
+  /tk:[resume]    Resume interrupted work
+  /tk:[learn]     Capture gotcha/pattern/decision
+  /tk:[help]      This help
 
 MODES
-  light     Fast, minimal interaction
-  medium    Balanced, key decisions
-  heavy     Comprehensive, parallel SubAgents + DOCS
+  [light]     Fast, minimal interaction
+  [medium]    Balanced, key decisions
+  [heavy]     Comprehensive, parallel SubAgents + DOCS
 
 HEAVY MODE SUBAGENTS
   map:    6 mappers + DOCS
@@ -57,4 +57,10 @@ KEY FILES
   .planning/HISTORY.md   Work log
   .planning/ISSUES.md    Known issues
   .planning/PATTERNS.md  Discovered patterns
+
+EXAMPLES
+  /tk:[map] [heavy] This is a Next.js e-commerce app
+  /tk:[build] [medium] Add user authentication
+  /tk:[debug] [light] API returns 500 errors
+  /tk:[qa] [heavy] Test everything before launch
 ```

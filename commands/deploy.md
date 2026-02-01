@@ -1,6 +1,6 @@
 ---
 name: tk:deploy
-description: Deployment. /tk deploy light|medium|heavy
+description: Deployment. /tk:[$cmd] [light]|medium|heavy
 allowed-tools:
   - Read
   - Write
@@ -9,7 +9,7 @@ allowed-tools:
   - AskUserQuestion
 ---
 
-# /tk deploy <mode>
+# /tk:[$cmd] [mode]
 
 Deploy to production.
 

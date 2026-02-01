@@ -1,6 +1,6 @@
 ---
 name: tk:learn
-description: Capture a learning. /tk learn <type> <description>
+description: Capture a learning. /tk:learn <type> <description>
 allowed-tools:
   - Read
   - Write
@@ -8,7 +8,7 @@ allowed-tools:
   - AskUserQuestion
 ---
 
-# /tk learn
+# /tk:[learn]
 
 Capture something learned for future reference.
 
@@ -55,4 +55,4 @@ Ask: "What kind of learning?"
 git add AGENTS.md .planning/ && git commit -m "docs: add [type] - [brief]"
 ```
 
-Confirm: "Learning captured to [file]. Available to all future /tk commands."
+Confirm: "Learning captured to [file]. Available to all future /tk:commands."

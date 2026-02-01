@@ -1,6 +1,6 @@
 ---
 name: tk:debug
-description: Systematic debugging. /tk debug light|medium|heavy <problem>
+description: Systematic debugging. /tk:[$cmd] [light]|medium|heavy <problem>
 allowed-tools:
   - Read
   - Write
@@ -10,7 +10,7 @@ allowed-tools:
   - AskUserQuestion
 ---
 
-# /tk debug <mode> <message>
+# /tk:[$cmd] [mode] <message>
 
 Debug systematically. Break repair loops.
 

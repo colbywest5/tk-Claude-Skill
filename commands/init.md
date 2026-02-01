@@ -1,6 +1,6 @@
 ---
 name: tk:init
-description: Initialize project. /tk init light|medium|heavy <description>
+description: Initialize project. /tk:[$cmd] [light]|medium|heavy <description>
 allowed-tools:
   - Read
   - Write
@@ -10,7 +10,7 @@ allowed-tools:
   - WebSearch
 ---
 
-# /tk init <mode> <message>
+# /tk:[$cmd] [mode] <message>
 
 Start a new project from scratch.
 
@@ -66,7 +66,7 @@ Then: Everything in medium, plus:
 - GitHub Actions CI (.github/workflows/ci.yml)
 - Dockerfile + .dockerignore
 - Full .planning/ suite (STATE.md, HISTORY.md, etc.)
-- Run /tk map heavy logic for context
+- Run /tk:[map] [heavy] logic for context
 ```
 
 ### 5. Completion

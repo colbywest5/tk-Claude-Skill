@@ -1,6 +1,6 @@
 ---
 name: tk:qa
-description: QA testing with security analysis. /tk qa light|medium|heavy <what to test>
+description: QA testing with security analysis. /tk:[$cmd] [light]|medium|heavy <what to test>
 allowed-tools:
   - Read
   - Write
@@ -10,7 +10,7 @@ allowed-tools:
   - AskUserQuestion
 ---
 
-# /tk qa <mode> <message>
+# /tk:[$cmd] [mode] <message>
 
 Test systematically. Find bugs AND security vulnerabilities before users do.
 
@@ -185,7 +185,7 @@ git commit -m "docs: QA report - [X] issues found"
 Report: Tests run, issues by severity, security findings, deploy readiness
 
 **Offer:**
-- "Fix critical issues now?" → run `/tk debug` for each
+- "Fix critical issues now?" → run `/tk:debug` for each
 - "Create GitHub issues?"
 - "Generate security report for stakeholders?"
 

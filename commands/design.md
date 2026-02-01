@@ -1,6 +1,6 @@
 ---
 name: tk:design
-description: Create distinctive frontend interfaces. /tk design light|medium|heavy <what to build>
+description: Create distinctive frontend interfaces. /tk:[$cmd] [light]|medium|heavy <what to build>
 allowed-tools:
   - Read
   - Write
@@ -11,7 +11,7 @@ allowed-tools:
   - WebFetch
 ---
 
-# /tk design <mode> <message>
+# /tk:[$cmd] [mode] <message>
 
 Create production-grade frontend interfaces with exceptional design quality. Avoid generic "AI slop" aesthetics.
 

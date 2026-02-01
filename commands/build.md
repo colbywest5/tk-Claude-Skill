@@ -1,6 +1,6 @@
 ---
 name: tk:build
-description: Build something with structured workflow. /tk build light|medium|heavy <what to build>
+description: Build something with structured workflow. /tk:[$cmd] [light]|medium|heavy <what to build>
 allowed-tools:
   - Read
   - Write
@@ -11,7 +11,7 @@ allowed-tools:
   - WebFetch
 ---
 
-# /tk build <mode> <message>
+# /tk:[$cmd] [mode] <message>
 
 Build what $MESSAGE describes using a structured 7-phase workflow.
 
