@@ -1,6 +1,6 @@
 # TK - Toolkit Installer (PowerShell)
 # Works on: Windows PowerShell, PowerShell Core (Windows/Mac/Linux)
-# Usage: irm https://raw.githubusercontent.com/colbywest5/tk-Claude-Skill/main/install.ps1 | iex
+# Usage: irm https://raw.githubusercontent.com/colbywest5/Toolkit/main/install.ps1 | iex
 
 param(
     [switch]$Local,
@@ -10,7 +10,7 @@ param(
 )
 
 $VERSION = "1.1.0"
-$REPO = "colbywest5/tk-Claude-Skill"
+$REPO = "colbywest5/Toolkit"
 $BASE_URL = "https://raw.githubusercontent.com/$REPO/main"
 
 function Write-Color {

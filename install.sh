@@ -2,12 +2,12 @@
 
 # TK - Toolkit Installer
 # Works on: macOS, Linux, Windows (Git Bash, WSL, MSYS2)
-# Usage: curl -fsSL https://raw.githubusercontent.com/colbywest5/tk-Claude-Skill/main/install.sh | bash
+# Usage: curl -fsSL https://raw.githubusercontent.com/colbywest5/Toolkit/main/install.sh | bash
 
 set -e
 
 VERSION="1.1.0"
-REPO="colbywest5/tk-Claude-Skill"
+REPO="colbywest5/Toolkit"
 CYAN='\033[0;36m'
 GREEN='\033[0;32m'
 DIM='\033[2m'

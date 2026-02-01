@@ -147,7 +147,7 @@ async function main() {
 TK Installer v${VERSION}
 
 Usage:
-  npx tk-claude-skill [options]
+  npx Toolkit [options]
 
 Options:
   --global, -g     Install globally (~/.claude/commands/)

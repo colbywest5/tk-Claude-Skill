@@ -24,8 +24,8 @@ Thanks for your interest in contributing to TK.
 
 ```bash
 # Clone
-git clone https://github.com/colbywest5/tk-Claude-Skill.git
-cd tk-Claude-Skill
+git clone https://github.com/colbywest5/Toolkit.git
+cd Toolkit
 
 # Install locally to test
 mkdir -p ~/.claude/commands/tk
@@ -38,7 +38,7 @@ cp commands/* ~/.claude/commands/tk/
 ## Project Structure
 
 ```
-tk-Claude-Skill/
+Toolkit/
 ├── .claude-plugin/      # Plugin metadata
 │   └── plugin.json
 ├── .github/             # GitHub Actions

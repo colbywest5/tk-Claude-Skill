@@ -4,7 +4,7 @@
   "version": "1.1.0",
   "description": "A developer toolkit for Claude Code. Structured workflows, parallel agents, security scanning, multi-instance coordination.",
   "author": "colbywest5",
-  "repository": "https://github.com/colbywest5/tk-Claude-Skill",
+  "repository": "https://github.com/colbywest5/Toolkit",
   "license": "MIT",
   "keywords": [
     "toolkit",

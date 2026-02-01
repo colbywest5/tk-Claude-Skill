@@ -1,10 +1,10 @@
 {
-  "name": "tk-claude-skill",
+  "name": "tk-toolkit",
   "version": "1.1.0",
   "description": "A developer toolkit for Claude Code. Structured workflows, parallel agents, security scanning.",
   "main": "bin/install.js",
   "bin": {
-    "tk-claude-skill": "./bin/install.js",
+    "tk-toolkit": "./bin/install.js",
     "tk": "./bin/install.js"
   },
   "scripts": {
@@ -16,8 +16,8 @@
     "claude-code",
     "ai",
     "coding",
-    "tokens",
-    "optimization",
+    "toolkit",
+    "workflow",
     "skills",
     "commands",
     "mcp",
@@ -29,18 +29,19 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/colbywest5/tk-Claude-Skill.git"
+    "url": "git+https://github.com/colbywest5/Toolkit.git"
   },
   "bugs": {
-    "url": "https://github.com/colbywest5/tk-Claude-Skill/issues"
+    "url": "https://github.com/colbywest5/Toolkit/issues"
   },
-  "homepage": "https://github.com/colbywest5/tk-Claude-Skill#readme",
+  "homepage": "https://github.com/colbywest5/Toolkit#readme",
   "files": [
     "bin/",
     "tk.md",
     "commands/",
     "agents/",
     "hooks/",
+    "skills/",
     "mcp/"
   ],
   "engines": {

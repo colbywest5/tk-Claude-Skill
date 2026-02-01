@@ -11,7 +11,7 @@ Add to your MCP client configuration:
   "mcpServers": {
     "tk": {
       "command": "npx",
-      "args": ["tk-claude-skill", "--mcp"]
+      "args": ["Toolkit", "--mcp"]
     }
   }
 }
@@ -24,7 +24,7 @@ Or if using the local installation:
   "mcpServers": {
     "tk": {
       "command": "node",
-      "args": ["/path/to/tk-Claude-Skill/mcp/server.js"]
+      "args": ["/path/to/Toolkit/mcp/server.js"]
     }
   }
 }

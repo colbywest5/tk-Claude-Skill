@@ -20,7 +20,7 @@ echo "Updating TK..."
 
 CLAUDE_DIR="$HOME/.claude/commands"
 TK_DIR="$CLAUDE_DIR/tk"
-REPO="colbywest5/tk-Claude-Skill"
+REPO="colbywest5/Toolkit"
 TMP_DIR=$(mktemp -d)
 
 # Download latest
@@ -57,7 +57,7 @@ Write-Host "Updating TK..." -ForegroundColor Cyan
 
 $CLAUDE_DIR = "$env:USERPROFILE\.claude\commands"
 $TK_DIR = "$CLAUDE_DIR\tk"
-$REPO = "colbywest5/tk-Claude-Skill"
+$REPO = "colbywest5/Toolkit"
 $BASE_URL = "https://raw.githubusercontent.com/$REPO/main"
 
 # Create temp directory

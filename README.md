@@ -37,32 +37,32 @@ Works on **Windows**, **macOS**, and **Linux**.
 ### Method 1: NPX (Recommended)
 
 ```bash
-npx tk-claude-skill
+npx tk-toolkit
 ```
 
 ### Method 2: One-Line Script
 
 **macOS / Linux / Git Bash:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/colbywest5/tk-Claude-Skill/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/colbywest5/Toolkit/main/install.sh | bash
 ```
 
 **Windows PowerShell:**
 ```powershell
-irm https://raw.githubusercontent.com/colbywest5/tk-Claude-Skill/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/colbywest5/Toolkit/main/install.ps1 | iex
 ```
 
 ### Method 3: Claude Code Plugin
 
 ```bash
-/plugin install https://github.com/colbywest5/tk-Claude-Skill
+/plugin install https://github.com/colbywest5/Toolkit
 ```
 
 ### Method 4: Manual
 
 ```bash
-git clone https://github.com/colbywest5/tk-Claude-Skill.git
-cd tk-Claude-Skill
+git clone https://github.com/colbywest5/Toolkit.git
+cd Toolkit
 ```
 
 **macOS / Linux:**
@@ -269,7 +269,7 @@ TK supports the Model Context Protocol:
   "mcpServers": {
     "tk": {
       "command": "npx",
-      "args": ["tk-claude-skill", "--mcp"]
+      "args": ["Toolkit", "--mcp"]
     }
   }
 }
@@ -300,7 +300,7 @@ AGENTS.md              # Project knowledge base
 TK follows the Claude Code plugin format:
 
 ```
-tk-Claude-Skill/
+Toolkit/
 ├── .claude-plugin/
 │   └── plugin.json      # Plugin metadata
 ├── commands/            # Slash commands
