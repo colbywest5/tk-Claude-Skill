@@ -1,64 +1,42 @@
 ---
 name: tk:tokens
-description: Show TK command file sizes and estimated token counts
+description: Show TK command file sizes
 allowed-tools:
   - Bash
 ---
 
 # /tk:tokens
 
-Show actual file sizes and estimated token counts for TK commands.
+Show actual file sizes for TK commands.
 
 ## Process
 
-Detect OS and calculate real file sizes (~4 characters = 1 token):
-
 ```bash
-echo "TK Command Sizes"
-echo "================"
+echo "TK Command File Sizes"
+echo "====================="
 echo ""
-printf "%-15s %8s %10s\n" "Command" "Bytes" "~Tokens"
-printf "%-15s %8s %10s\n" "-------" "-----" "-------"
 
 # Find TK commands directory
 if [ -d "$HOME/.claude/commands/tk" ]; then
     TK_DIR="$HOME/.claude/commands/tk"
-elif [ -d "$USERPROFILE/.claude/commands/tk" ]; then
-    TK_DIR="$USERPROFILE/.claude/commands/tk"
-elif [ -d ".claude/commands/tk" ]; then
-    TK_DIR=".claude/commands/tk"
+elif [ -d "${USERPROFILE}/.claude/commands/tk" ]; then
+    TK_DIR="${USERPROFILE}/.claude/commands/tk"
 else
-    echo "TK commands not found"
-    exit 1
+    TK_DIR=".claude/commands/tk"
 fi
 
-# Calculate sizes
-total_bytes=0
-for file in "$TK_DIR"/*.md; do
-    [ -f "$file" ] || continue
+# List files by size
+ls -lhS "$TK_DIR"/*.md 2>/dev/null | awk '{print $9, $5}' | while read file size; do
     name=$(basename "$file" .md)
-    bytes=$(wc -c < "$file" | tr -d ' ')
-    tokens=$((bytes / 4))
-    total_bytes=$((total_bytes + bytes))
-    printf "%-15s %8s %10s\n" "$name" "$bytes" "~$tokens"
-done | sort -t$'\t' -k2 -rn
+    printf "%-15s %s\n" "$name" "$size"
+done
 
 echo ""
-echo "---------------------------------------"
-total_tokens=$((total_bytes / 4))
-printf "%-15s %8s %10s\n" "TOTAL" "$total_bytes" "~$total_tokens"
-echo ""
-echo "Note: ~4 chars = 1 token (rough estimate)"
+echo "---------------------"
+total=$(du -sh "$TK_DIR" 2>/dev/null | cut -f1)
+echo "Total: $total"
 ```
 
 ## What This Shows
 
-- **Bytes**: Actual file size on disk
-- **~Tokens**: Rough estimate (actual tokenization varies)
-
-## Context Usage
-
-When you run a TK command:
-1. `_shared.md` loads (~900 tokens)
-2. Command file loads (varies)
-3. Your codebase context
+File sizes on disk. That's it. No fake token estimates.
