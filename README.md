@@ -128,12 +128,13 @@ Restart Claude Code, then run:
 |---------|--------------|
 | `/tk:rules` | **Set global rules for all agents.** No emojis, no placeholders, no browser popups, etc. Rules are enforced on every command. |
 
-### Analysis & Utilities
+### Documentation & Analysis
 
 | Command | What it does |
 |---------|--------------|
-| `/tk:opinion` | **Honest project audit.** Asks questions, then gives direct feedback on architecture, code quality, dependencies, testing, docs, and MVP progress. |
 | `/tk:doc` | Generates README, API docs, architecture diagrams, inline comments. |
+| `/tk:workflow` | **Visual workflow documentation.** Generates self-contained HTML with SVG diagrams, executive summaries, data flow analysis, real-world examples, and improvement recommendations. Perfect for team onboarding or architecture reviews. |
+| `/tk:opinion` | **Honest project audit.** Asks questions, then gives direct feedback on architecture, code quality, dependencies, testing, docs, and MVP progress. |
 | `/tk:init` | Scaffolds new projects with your preferred stack and tooling. |
 | `/tk:resume` | Picks up where you left off if interrupted. |
 | `/tk:learn` | Captures gotchas, patterns, and decisions. |
@@ -224,12 +225,47 @@ When using `heavy` mode, TK spawns specialized SubAgents in parallel:
 |---------|-----------|
 | `map` | 6 mappers + DOCS |
 | `build` | 3 explorers → 3 architects → 3 reviewers + DOCS |
+| `workflow` | 1 mapper + 1 diagrammer + 1 explainer + 1 analyst + DOCS |
 | `opinion` | 4 auditors (architecture, code, deps, DX) + DOCS |
 | `design` | 3 researchers + 4 specialists + DOCS |
 | `debug` | 4 investigators + 3 fixers + DOCS |
 | `qa` | 6 specialists (security, edge cases, perf, a11y) + DOCS |
 | `review` | 4 reviewers + DOCS |
 | `deploy` | 4 pre-flight + 4 post-deploy + DOCS |
+
+---
+
+## `/tk:workflow` — Visual Documentation
+
+Generate comprehensive, self-contained HTML documentation with visual diagrams:
+
+```bash
+/tk:workflow heavy How does the authentication flow work?
+/tk:workflow medium Document the payment processing system
+```
+
+**What it generates:**
+- Executive summary for stakeholders
+- SVG architecture and data flow diagrams
+- Real-world example walkthroughs
+- Component breakdowns
+- Improvement recommendations
+- Tech debt assessment
+- Glossary of terms
+
+**Output files:**
+| Mode | Output |
+|------|--------|
+| `light` | `workflow-overview.html` — Quick overview + main diagram |
+| `medium` | `workflow-report.html` — Multiple diagrams + detailed analysis |
+| `heavy` | `workflow-complete.html` — Full documentation with SubAgents |
+
+**Use cases:**
+- Team doesn't understand how a system works
+- Onboarding new developers
+- Executive briefings on technical systems
+- Pre-refactor analysis
+- Knowledge transfer
 
 ---
 
