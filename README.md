@@ -225,7 +225,7 @@ When using `heavy` mode, TK spawns specialized SubAgents in parallel:
 |---------|-----------|
 | `map` | 6 mappers + DOCS |
 | `build` | 3 explorers → 3 architects → 3 reviewers + DOCS |
-| `workflow` | 1 mapper + 1 diagrammer + 1 explainer + 1 analyst + DOCS |
+| `workflow` | 1 mapper + 1 diagrammer + 1 analyst + 1 OSI specialist + 1 metrics + DOCS |
 | `opinion` | 4 auditors (architecture, code, deps, DX) + DOCS |
 | `design` | 3 researchers + 4 specialists + DOCS |
 | `debug` | 4 investigators + 3 fixers + DOCS |
@@ -237,7 +237,7 @@ When using `heavy` mode, TK spawns specialized SubAgents in parallel:
 
 ## `/tk:workflow` — Visual Documentation
 
-Generate comprehensive, self-contained HTML documentation with visual diagrams:
+Generate comprehensive, self-contained HTML documentation with visual diagrams, analytical charts, and OSI model analysis:
 
 ```bash
 /tk:workflow heavy How does the authentication flow work?
@@ -245,20 +245,30 @@ Generate comprehensive, self-contained HTML documentation with visual diagrams:
 ```
 
 **What it generates:**
-- Executive summary for stakeholders
-- SVG architecture and data flow diagrams
-- Real-world example walkthroughs
-- Component breakdowns
-- Improvement recommendations
-- Tech debt assessment
-- Glossary of terms
+
+| Feature | Description |
+|---------|-------------|
+| **Dual-Page Output** | Full Analysis + Executive Summary views with navigation |
+| **OSI Model Analysis** | Maps all components to OSI layers 1-7 with visual diagram |
+| **Analytical Charts** | Pie charts, bar charts, line graphs, sparklines (pure SVG) |
+| **PDF Export** | One-click export button on both pages |
+| **Architecture Diagrams** | System overview, data flow, component interactions |
+| **Executive Summary** | Condensed view for stakeholders and leadership |
+| **Improvement Recommendations** | Prioritized suggestions with business impact |
 
 **Output files:**
 | Mode | Output |
 |------|--------|
 | `light` | `workflow-overview.html` — Quick overview + main diagram |
-| `medium` | `workflow-report.html` — Multiple diagrams + detailed analysis |
-| `heavy` | `workflow-complete.html` — Full documentation with SubAgents |
+| `medium` | `workflow-full.html` + `workflow-executive.html` — Dual-page with charts |
+| `heavy` | Full dual-page output with OSI analysis + parallel SubAgents |
+
+**Charts included:**
+- Component distribution (pie)
+- Components per OSI layer (bar)
+- Dependency complexity trend (line)
+- Code distribution (pie)
+- Inline sparklines for metrics
 
 **Use cases:**
 - Team doesn't understand how a system works
@@ -266,6 +276,7 @@ Generate comprehensive, self-contained HTML documentation with visual diagrams:
 - Executive briefings on technical systems
 - Pre-refactor analysis
 - Knowledge transfer
+- Network layer analysis
 
 ---
 
