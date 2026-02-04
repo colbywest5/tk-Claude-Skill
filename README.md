@@ -162,6 +162,27 @@ Every command supports three modes:
 
 ---
 
+## Token Efficiency
+
+TK uses **progressive disclosure** (inspired by [claude-mem](https://github.com/thedotmack/claude-mem)) to minimize token usage without compromising capabilities.
+
+**The 3-Layer Pattern:**
+| Layer | What Loads | Token Cost |
+|-------|-----------|------------|
+| L1: Index | File names, summaries, headers | ~50-100 tokens |
+| L2: Relevant | Sections matching current task | ~200-500 tokens |
+| L3: Full | Complete file contents | ~500-2000 tokens |
+
+**How it works:**
+1. Start with minimal context (L1)
+2. Identify what's relevant to the task
+3. Load only what's needed (L2/L3)
+4. ~10x token savings by not loading everything upfront
+
+**Capabilities preserved:** You can always load more context when needed. TK just doesn't load speculatively.
+
+---
+
 ## `/tk:rules` — Global Agent Rules
 
 Set rules that ALL TK agents must follow:
@@ -378,6 +399,7 @@ Built from patterns in:
 |--------|--------------|
 | [Get Shit Done](https://github.com/glittercowboy/get-shit-done) | Context engineering, multi-agent orchestration |
 | [Ralph](https://github.com/snarktank/ralph) | Autonomous loops, fresh context patterns |
+| [claude-mem](https://github.com/thedotmack/claude-mem) | Progressive disclosure, token-efficient context loading |
 | [feature-dev](https://github.com/anthropics/claude-code/tree/main/plugins/feature-dev) | 7-phase workflow, specialized agents |
 | [security-guidance](https://github.com/anthropics/claude-code/tree/main/plugins/security-guidance) | Vulnerability scanning |
 | [frontend-design](https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design) | Distinctive UI principles |
